@@ -15,6 +15,7 @@ app.use(express.static("public"));
 // Routes
 const AdminRoutes = require("./routes/AdminRoutes");
 app.use("/admin", AdminRoutes);
-
+const CategoriesRoutes = require("./routes/CategoriesRoutes");
+app.use("/categories", CategoriesRoutes);
 //Ports
 app.listen(4000);
