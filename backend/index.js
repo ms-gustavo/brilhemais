@@ -13,6 +13,8 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.static("public"));
 
 // Routes
+const AdminRoutes = require("./routes/AdminRoutes");
+app.use("/admin", AdminRoutes);
 
 //Ports
 app.listen(4000);
