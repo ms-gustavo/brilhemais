@@ -1,8 +1,8 @@
 const mongoose = require("../db/conn");
 const { Schema } = mongoose;
 
-const Type = mongoose.model(
-  "Type",
+const Category = mongoose.model(
+  "Category",
   new Schema({
     name: {
       type: String,
@@ -16,4 +16,4 @@ const Type = mongoose.model(
   })
 );
 
-module.exports = Type;
+module.exports = Category;

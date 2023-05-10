@@ -9,6 +9,10 @@ const Accessory = mongoose.model(
         type: String,
         required: true,
       },
+      category: {
+        type: Schema.Types.ObjectId,
+        ref: "Category",
+      },
       price: {
         type: Number,
         required: true,
@@ -16,10 +20,6 @@ const Accessory = mongoose.model(
       images: {
         type: Array,
         required: true,
-      },
-      type: {
-        type: Schema.Types.ObjectId,
-        ref: "Type",
       },
       description: {
         type: String,
