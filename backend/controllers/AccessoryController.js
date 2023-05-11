@@ -1,5 +1,6 @@
 const Accessory = require("../models/Accessory");
 const Category = require("../models/Category");
+const Joi = require("joi");
 
 //helpers
 const getToken = require("../helpers/GetToken");
@@ -11,29 +12,36 @@ module.exports = class AccessoryController {
     const { name, category, price, description } = req.body;
     const images = req.files;
 
-    if (!name) {
+    const schema = Joi.object({
+      name: Joi.string().required().messages({
+        "any.required": `O nome é obrigatório`,
+      }),
+      category: Joi.string().required().messages({
+        "any.required": `A categoria é obrigatória`,
+      }),
+      price: Joi.number().required().messages({
+        "any.required": `O preço é obrigatório`,
+      }),
+      description: Joi.string().required().messages({
+        "any.required": `A descrição é obrigatória`,
+      }),
+      images: Joi.array().min(1).required().messages({
+        "any.required": `A imagem é obrigatória`,
+        "array.min": `A imagem é obrigatória`,
+      }),
+    });
+
+    const { error } = schema.validate({
+      name,
+      category,
+      price,
+      description,
+      images,
+    });
+    if (error) {
+      const errorMessage = error.details.map((detail) => detail.message);
       return res.status(422).json({
-        message: `O nome é obrigatório`,
-      });
-    }
-    if (!category) {
-      return res.status(422).json({
-        message: `A categoria é obrigatória`,
-      });
-    }
-    if (!price) {
-      return res.status(422).json({
-        message: `O preço é obrigatório`,
-      });
-    }
-    if (!description) {
-      return res.status(422).json({
-        message: `A descrição é obrigatória`,
-      });
-    }
-    if (!images || images.length === 0) {
-      return res.status(422).json({
-        message: `A imagem é obrigatória`,
+        message: errorMessage,
       });
     }
 
@@ -68,5 +76,6 @@ module.exports = class AccessoryController {
         message: "Ocorreu um erro ao criar o acessório",
       });
     }
+    console.log(Accessory.category.name);
   }
 };
