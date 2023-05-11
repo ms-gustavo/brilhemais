@@ -21,6 +21,7 @@ module.exports = class AccessoryController {
       }),
       price: Joi.number().required().messages({
         "any.required": `O preço é obrigatório`,
+        "number.base": "O preço deve ser um número!",
       }),
       description: Joi.string().required().messages({
         "any.required": `A descrição é obrigatória`,
@@ -156,6 +157,81 @@ module.exports = class AccessoryController {
     await Accessory.findByIdAndRemove(id);
     res.status(200).json({
       message: `Accesório excluído.`,
+    });
+  }
+
+  static async updateAccessory(req, res) {
+    const id = req.params.id;
+    const { name, category, price, description } = req.body;
+    const images = req.files;
+
+    const updatedData = {};
+
+    // check if Id is valid
+    if (!ObjectId.isValid(id)) {
+      res.status(422).json({
+        message: `Id inválido`,
+      });
+      return;
+    }
+
+    //check if accessory exists
+    const accessory = await Accessory.findOne({ _id: new ObjectId(id) });
+    if (!accessory) {
+      res.status(404).json({
+        message: `Acessório inexistente`,
+      });
+      return;
+    }
+    // check if user is admin
+    const token = getToken(req);
+    const admin = await getAdminByToken(token);
+
+    if (!admin.isAdmin) {
+      res.status(422).json({
+        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+      });
+      return;
+    }
+
+    // validations
+    const schema = Joi.object({
+      name: Joi.string().required().messages({
+        "any.required": `O nome é obrigatório`,
+      }),
+      price: Joi.number().required().messages({
+        "any.required": `O preço é obrigatório`,
+        "number.base": "O preço deve ser um número!",
+      }),
+      description: Joi.string().required().messages({
+        "any.required": `A descrição é obrigatória`,
+      }),
+    });
+    const { error, value } = schema.validate({
+      name,
+      price,
+      description,
+    });
+    if (error) {
+      const errorMessage = error.details.map((detail) => detail.message);
+      return res.status(422).json({
+        message: errorMessage,
+      });
+    }
+    updatedData.name = value.name;
+    updatedData.price = value.price;
+    updatedData.description = value.description;
+
+    if (images.length > 0) {
+      updatedData.images = [];
+      images.map((image) => {
+        updatedData.images.push(image.filename);
+      });
+    }
+    console.log(updatedData);
+    await Accessory.findByIdAndUpdate(id, updatedData);
+    res.status(200).json({
+      message: `O acessório foi atualizado!`,
     });
   }
 };

@@ -14,5 +14,11 @@ router.post(
 router.get("/", AccessoryController.getAll);
 router.get("/:id", AccessoryController.getAccessoryById);
 router.delete("/:id", AccessoryController.deleteAccessoryById);
+router.patch(
+  "/:id",
+  verifyToken,
+  imageUpload.array("images"),
+  AccessoryController.updateAccessory
+);
 
 module.exports = router;
