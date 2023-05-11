@@ -1,9 +1,13 @@
 const mongoose = require("../db/conn");
 const { Schema } = mongoose;
 
-const Admin = mongoose.model(
-  "Admin",
+const User = mongoose.model(
+  "User",
   new Schema({
+    name: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -19,4 +23,4 @@ const Admin = mongoose.model(
   })
 );
 
-module.exports = Admin;
+module.exports = User;

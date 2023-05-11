@@ -13,13 +13,13 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.static("public"));
 
 // Routes
-const AdminRoutes = require("./routes/AdminRoutes");
-app.use("/admin", AdminRoutes);
+const UserRoutes = require("./routes/UserRoutes");
+app.use("/user", UserRoutes);
 
 const CategoriesRoutes = require("./routes/CategoriesRoutes");
 app.use("/categories", CategoriesRoutes);
 
-const AccessoryRoutes = require("./routes/AccessoryRoutes")
-app.use("/accessory", AccessoryRoutes)
+const AccessoryRoutes = require("./routes/AccessoryRoutes");
+app.use("/accessory", AccessoryRoutes);
 //Ports
 app.listen(4000);

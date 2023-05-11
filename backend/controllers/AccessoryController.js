@@ -4,7 +4,7 @@ const Joi = require("joi");
 
 //helpers
 const getToken = require("../helpers/GetToken");
-const getAdminByToken = require("../helpers/GetAdminByToken");
+const getUserByToken = require("../helpers/GetUserByToken");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 module.exports = class AccessoryController {
@@ -145,9 +145,9 @@ module.exports = class AccessoryController {
     }
 
     const token = getToken(req);
-    const admin = await getAdminByToken(token);
+    const user = await getUserByToken(token);
 
-    if (!admin.isAdmin) {
+    if (!user.isAdmin) {
       res.status(422).json({
         message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
       });
@@ -185,9 +185,9 @@ module.exports = class AccessoryController {
     }
     // check if user is admin
     const token = getToken(req);
-    const admin = await getAdminByToken(token);
+    const user = await getUserByToken(token);
 
-    if (!admin.isAdmin) {
+    if (!user.isAdmin) {
       res.status(422).json({
         message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
       });
@@ -228,7 +228,6 @@ module.exports = class AccessoryController {
         updatedData.images.push(image.filename);
       });
     }
-    console.log(updatedData);
     await Accessory.findByIdAndUpdate(id, updatedData);
     res.status(200).json({
       message: `O acessório foi atualizado!`,

@@ -4,10 +4,10 @@ const tokenSecret = process.env.TOKEN_SECRET;
 
 const jwt = require("jsonwebtoken");
 
-const Admin = require("../models/Admin");
+const User = require("../models/User");
 
-// get admin by jwt token
-const getAdminByToken = async (token) => {
+// get User by jwt token
+const getUserByToken = async (token) => {
   if (!token) {
     return res.status(401).json({
       message: `Acesso negado!`,
@@ -15,10 +15,10 @@ const getAdminByToken = async (token) => {
   }
 
   const decoded = jwt.verify(token, tokenSecret);
-  const adminId = decoded.id;
-  const admin = await Admin.findOne({ _id: adminId });
+  const userId = decoded.id;
+  const user = await User.findOne({ _id: userId });
 
-  return admin;
+  return user;
 };
 
-module.exports = getAdminByToken;
+module.exports = getUserByToken;

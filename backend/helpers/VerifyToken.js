@@ -20,7 +20,7 @@ const checkToken = (req, res, next) => {
 
   try {
     const verified = jwt.verify(token, tokenSecret);
-    req.admin = verified;
+    req.user = verified;
 
     next();
   } catch (error) {

@@ -3,12 +3,12 @@ require("dotenv").config();
 
 const tokenSecret = process.env.TOKEN_SECRET;
 
-const createUserToken = async (admin, req, res) => {
+const createUserToken = async (user, req, res) => {
   //create token
   const token = jwt.sign(
     {
-      name: admin.email,
-      id: admin._id,
+      name: user.name,
+      id: user._id,
     },
     tokenSecret
   );
@@ -16,7 +16,7 @@ const createUserToken = async (admin, req, res) => {
   res.status(200).json({
     message: `Você está autenticado!`,
     token: token,
-    userId: admin._id,
+    userId: user._id,
   });
 };
 
