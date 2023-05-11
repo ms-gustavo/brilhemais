@@ -11,7 +11,7 @@ module.exports = class AccessoryController {
   static async create(req, res) {
     const { name, category, price, description } = req.body;
     const images = req.files;
-
+    // Validations
     const schema = Joi.object({
       name: Joi.string().required().messages({
         "any.required": `O nome é obrigatório`,

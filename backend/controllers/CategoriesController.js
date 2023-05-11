@@ -1,5 +1,5 @@
 const Category = require("../models/Category");
-
+const Joi = require("joi");
 // helpers
 const getToken = require("../helpers/GetToken");
 const getAdminByToken = require("../helpers/GetAdminByToken");
@@ -8,20 +8,26 @@ const ObjectId = require("mongoose").Types.ObjectId;
 module.exports = class CategoriesController {
   static async create(req, res) {
     const name = req.body.name;
-    const image = req.file.filename;
+    const image = req.file ? req.file.filename : undefined;
 
     // validations
-    if (!name) {
-      res.status(422).json({
-        message: `O nome é obrigatório`,
+    const schema = Joi.object({
+      name: Joi.string().required().messages({
+        "any.required": `O nome é obrigatório`,
+      }),
+      image: Joi.string().required().messages({
+        "any.required": `A imagem é obrigatória`,
+      }),
+    });
+    const { error, value } = schema.validate({
+      name,
+      image,
+    });
+    if (error) {
+      const errorMessage = error.details.map((detail) => detail.message);
+      return res.status(422).json({
+        message: errorMessage,
       });
-      return;
-    }
-    if (!image) {
-      res.status(422).json({
-        message: `A imagem é obrigatória`,
-      });
-      return;
     }
 
     const category = new Category({
@@ -38,6 +44,21 @@ module.exports = class CategoriesController {
     } catch (error) {
       res.status(500).json({
         message: error,
+      });
+    }
+  }
+
+  static async getAll(req, res) {
+    try {
+      const categories = await Category.find()
+        .sort("-createdAt")
+        .populate("accessories");
+      res.status(200).json({
+        categories,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: `Ocorreu um erro ao obter as categorias.`,
       });
     }
   }

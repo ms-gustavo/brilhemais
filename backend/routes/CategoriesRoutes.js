@@ -11,5 +11,6 @@ router.post(
   imageUpload.single("image"),
   CategoriesController.create
 );
+router.get("/", CategoriesController.getAll);
 
 module.exports = router;
