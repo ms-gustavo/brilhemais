@@ -2,7 +2,7 @@ const Joi = require("joi");
 const i18n = require("./i18n");
 i18n.setLocale("br");
 
-function validateRegisterUser(name, email, password, confirmpassword) {
+function validateRegisterUser(name, email, phone, password, confirmpassword) {
   const schema = Joi.object({
     name: Joi.string()
       .required()
@@ -40,6 +40,7 @@ function validateRegisterUser(name, email, password, confirmpassword) {
   const { error } = schema.validate({
     name,
     email,
+    phone,
     password,
     confirmpassword,
   });

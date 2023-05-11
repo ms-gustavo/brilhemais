@@ -157,7 +157,7 @@ module.exports = class AccessoryController {
 
   static async updateAccessory(req, res) {
     const id = req.params.id;
-    const { name, category, price, description } = req.body;
+    const { name, price, description } = req.body;
     const images = req.files;
 
     let updatedData = {};
