@@ -1,4 +1,6 @@
 require("dotenv").config();
+const i18n = require("./i18n");
+i18n.setLocale("br");
 
 const tokenSecret = process.env.TOKEN_SECRET;
 
@@ -10,7 +12,7 @@ const User = require("../models/User");
 const getUserByToken = async (token) => {
   if (!token) {
     return res.status(401).json({
-      message: `Acesso negado!`,
+      message: i18n.__("ACCESS_DENIED"),
     });
   }
 

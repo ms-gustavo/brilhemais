@@ -1,24 +1,37 @@
 const Joi = require("joi");
+const i18n = require("./i18n");
+i18n.setLocale("br");
 
 function validateCreateAccessory(name, category, price, description, images) {
   const schema = Joi.object({
-    name: Joi.string().required().messages({
-      "any.required": `O nome é obrigatório`,
-    }),
-    category: Joi.string().required().messages({
-      "any.required": `A categoria é obrigatória`,
-    }),
-    price: Joi.number().required().messages({
-      "any.required": `O preço é obrigatório`,
-      "number.base": "O preço deve ser um número!",
-    }),
-    description: Joi.string().required().messages({
-      "any.required": `A descrição é obrigatória`,
-    }),
-    images: Joi.array().min(1).required().messages({
-      "any.required": `A imagem é obrigatória`,
-      "array.min": `A imagem é obrigatória`,
-    }),
+    name: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("NAME_REQUIRED"),
+      }),
+    category: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("CATEGORY_REQUIRED"),
+      }),
+    price: Joi.number()
+      .required()
+      .messages({
+        "any.required": i18n.__("PRICE_REQUIRED"),
+        "number.base": i18n.__("PRICE_IS_NUMBER"),
+      }),
+    description: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("DESCRIPTION_REQUIRED"),
+      }),
+    images: Joi.array()
+      .min(1)
+      .required()
+      .messages({
+        "any.required": i18n.__("IMAGE_REQUIRED"),
+        "array.min": i18n.__("IMAGE_REQUIRED"),
+      }),
   });
 
   const { error } = schema.validate({
@@ -36,16 +49,22 @@ function validateCreateAccessory(name, category, price, description, images) {
 
 function validateUpdateAccessory(name, price, description) {
   const schema = Joi.object({
-    name: Joi.string().required().messages({
-      "any.required": `O nome é obrigatório`,
-    }),
-    price: Joi.number().required().messages({
-      "any.required": `O preço é obrigatório`,
-      "number.base": "O preço deve ser um número!",
-    }),
-    description: Joi.string().required().messages({
-      "any.required": `A descrição é obrigatória`,
-    }),
+    name: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("NAME_REQUIRED"),
+      }),
+    price: Joi.number()
+      .required()
+      .messages({
+        "any.required": i18n.__("PRICE_REQUIRED"),
+        "number.base": i18n.__("PRICE_IS_NUMBER"),
+      }),
+    description: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("DESCRIPTION_REQUIRED"),
+      }),
   });
   const { error, value } = schema.validate({
     name,

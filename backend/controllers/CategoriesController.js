@@ -1,5 +1,7 @@
 const Category = require("../models/Category");
-const Joi = require("joi");
+
+const i18n = require("../helpers/i18n");
+i18n.setLocale("br");
 // helpers
 const getToken = require("../helpers/GetToken");
 const getUserByToken = require("../helpers/GetUserByToken");
@@ -14,7 +16,7 @@ module.exports = class CategoriesController {
 
     if (!user.isAdmin) {
       res.status(422).json({
-        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+        message: i18n.__("UNABLE_TO_PROCESS"),
       });
       return;
     }
@@ -38,7 +40,7 @@ module.exports = class CategoriesController {
     try {
       const newCategory = await category.save();
       res.status(201).json({
-        message: `Categoria criada com sucesso!`,
+        message: i18n.__("CATEGORY_SUCCESSFULLY_CREATED"),
         newCategory,
       });
     } catch (error) {
@@ -58,7 +60,7 @@ module.exports = class CategoriesController {
       });
     } catch (error) {
       res.status(500).json({
-        message: `Ocorreu um erro ao obter as categorias.`,
+        message: i18n.__("CATEGORIES_ERROR_GET"),
       });
     }
   }
@@ -68,7 +70,7 @@ module.exports = class CategoriesController {
     // check if ID is valid
     if (!ObjectId.isValid(id)) {
       res.status(422).json({
-        message: `ID Inválido`,
+        message: i18n.__("INVALID_ID"),
       });
       return;
     }
@@ -77,7 +79,7 @@ module.exports = class CategoriesController {
     const category = await Category.findOne({ _id: id });
     if (!category) {
       res.status(404).json({
-        message: `A categoria não existe`,
+        message: i18n.__("CATEGORY_NOT_FOUND"),
       });
       return;
     }
@@ -93,7 +95,7 @@ module.exports = class CategoriesController {
 
     if (!user.isAdmin) {
       res.status(422).json({
-        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+        message: i18n.__("UNABLE_TO_PROCESS"),
       });
       return;
     }
@@ -102,7 +104,7 @@ module.exports = class CategoriesController {
     // check if ID is valid
     if (!ObjectId.isValid(id)) {
       res.status(422).json({
-        message: `ID Inválido`,
+        message: i18n.__("INVALID_ID"),
       });
       return;
     }
@@ -111,14 +113,14 @@ module.exports = class CategoriesController {
     const category = await Category.findOne({ _id: id });
     if (!category) {
       res.status(404).json({
-        message: `A categoria não existe`,
+        message: i18n.__("CATEGORY_NOT_FOUND"),
       });
       return;
     }
 
     await Category.findByIdAndRemove(id);
     res.status(200).json({
-      message: `Categoria excluída.`,
+      message: i18n.__("CATEGORIES_SUCCESSFULLY_REMOVED"),
     });
   }
 };

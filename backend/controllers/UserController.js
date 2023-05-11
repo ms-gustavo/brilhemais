@@ -1,6 +1,7 @@
 require("dotenv").config();
 const tokenSecret = process.env.TOKEN_SECRET;
-const Joi = require("joi");
+const i18n = require("../helpers/i18n");
+i18n.setLocale("br");
 const createUserToken = require("../helpers/CreateUserToken");
 const getToken = require("../helpers/GetToken");
 const User = require("../models/User");
@@ -33,7 +34,7 @@ module.exports = class UserController {
     const userExists = await User.findOne({ email });
     if (userExists) {
       res.status(422).json({
-        message: `Por favor, utilize outro e-mail`,
+        message: i18n.__("EMAIL_ALREADY_EXISTS"),
       });
       return;
     }

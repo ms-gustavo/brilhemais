@@ -1,22 +1,30 @@
 const Joi = require("joi");
+const i18n = require("./i18n");
+i18n.setLocale("br");
 
 function validateRegisterUser(name, email, password, confirmpassword) {
   const schema = Joi.object({
-    name: Joi.string().required().messages({
-      "any.required": `O nome é obrigatório`,
-    }),
-    email: Joi.string().required().messages({
-      "any.required": `O e-mail é obrigatório`,
-    }),
-    password: Joi.string().required().messages({
-      "any.required": `A senha é obrigatória`,
-    }),
+    name: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("NAME_REQUIRED"),
+      }),
+    email: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("EMAIL_REQUIRED"),
+      }),
+    password: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("PASSWORD_REQUIRED"),
+      }),
     confirmpassword: Joi.string()
       .required()
       .valid(Joi.ref("password"))
       .messages({
-        "any.required": `A confirmação de senha é obrigatória`,
-        "any.only": `A confirmação de senha deve ser igual à senha`,
+        "any.required": i18n.__("CONFIRMPASSWORD_REQUIRED"),
+        "any.only": i18n.__("PASSWORD_EQUALS_CONFIRMPASSWORD"),
       }),
   });
 
@@ -37,12 +45,16 @@ function validateRegisterUser(name, email, password, confirmpassword) {
 
 function validateLoginUser(email, password) {
   const schema = Joi.object({
-    email: Joi.string().required().messages({
-      "any.required": `O e-mail é obrigatório`,
-    }),
-    password: Joi.string().required().messages({
-      "any.required": `A senha é obrigatória`,
-    }),
+    email: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("EMAIL_REQUIRED"),
+      }),
+    password: Joi.string()
+      .required()
+      .messages({
+        "any.required": i18n.__("PASSWORD_REQUIRED"),
+      }),
   });
   const { error } = schema.validate({
     email,

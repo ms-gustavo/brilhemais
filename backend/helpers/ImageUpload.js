@@ -1,5 +1,7 @@
 const multer = require("multer");
 const path = require("path");
+const i18n = require("./i18n");
+i18n.setLocale("br");
 
 // store destination
 const imageStorage = multer.diskStorage({
@@ -27,9 +29,7 @@ const imageUpload = multer({
   storage: imageStorage,
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
-      return cb(
-        newError(`Formato de imagem inválido. Apenas png, jpg ou jpeg`)
-      );
+      return cb(newError(i18n.__("IMAGE_INVALID_FORMAT")));
     }
     cb(undefined, true);
   },

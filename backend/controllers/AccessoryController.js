@@ -1,7 +1,8 @@
 const Accessory = require("../models/Accessory");
 const Category = require("../models/Category");
-const Joi = require("joi");
 
+const i18n = require("../helpers/i18n");
+i18n.setLocale("br");
 //helpers
 const getToken = require("../helpers/GetToken");
 const getUserByToken = require("../helpers/GetUserByToken");
@@ -19,7 +20,7 @@ module.exports = class AccessoryController {
 
     if (!user.isAdmin) {
       res.status(422).json({
-        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+        message: i18n.__("UNABLE_TO_PROCESS"),
       });
       return;
     }
@@ -45,7 +46,7 @@ module.exports = class AccessoryController {
 
       if (!categoryDoc) {
         return res.status(404).json({
-          message: `Categoria não encontrada`,
+          message: i18n.__("CATEGORY_NOT_FOUND"),
         });
       }
 
@@ -62,13 +63,13 @@ module.exports = class AccessoryController {
       await categoryDoc.save();
 
       res.status(200).json({
-        message: "Acessório criado com sucesso",
+        message: i18n.__("ACCESSORY_SUCCESSFULLY_CREATED"),
         accessory,
       });
     } catch (error) {
       console.error(error);
       res.status(500).json({
-        message: "Ocorreu um erro ao criar o acessório",
+        message: i18n.__("ACCESSORY_ERROR_CREATED"),
       });
     }
   }
@@ -90,7 +91,7 @@ module.exports = class AccessoryController {
       });
     } catch (error) {
       res.status(500).json({
-        message: `Ocorreu um erro ao obter os acessórios.`,
+        message: i18n.__("ACCESSORY_ERROR_GET"),
       });
     }
   }
@@ -100,7 +101,7 @@ module.exports = class AccessoryController {
     // check if ID is valid
     if (!ObjectId.isValid(id)) {
       res.status(422).json({
-        message: `ID Inválido`,
+        message: i18n.__("INVALID_ID"),
       });
       return;
     }
@@ -109,7 +110,7 @@ module.exports = class AccessoryController {
     const accessory = await Accessory.findOne({ _id: id });
     if (!accessory) {
       res.status(404).json({
-        message: `O acessório não existe`,
+        message: i18n.__("ACCESSORY_NOT_FOUND"),
       });
       return;
     }
@@ -124,7 +125,7 @@ module.exports = class AccessoryController {
     // check if ID is valid
     if (!ObjectId.isValid(id)) {
       res.status(422).json({
-        message: `ID Inválido`,
+        message: i18n.__("INVALID_ID"),
       });
       return;
     }
@@ -133,7 +134,7 @@ module.exports = class AccessoryController {
     const accessory = await Accessory.findOne({ _id: id });
     if (!accessory) {
       res.status(404).json({
-        message: `O acessório não existe`,
+        message: i18n.__("ACCESSORY_NOT_FOUND"),
       });
       return;
     }
@@ -143,14 +144,14 @@ module.exports = class AccessoryController {
 
     if (!user.isAdmin) {
       res.status(422).json({
-        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+        message: i18n.__("UNABLE_TO_PROCESS"),
       });
       return;
     }
 
     await Accessory.findByIdAndRemove(id);
     res.status(200).json({
-      message: `Accesório excluído.`,
+      message: i18n.__("ACCESSORY_SUCCESSFULLY_REMOVED"),
     });
   }
 
@@ -164,7 +165,7 @@ module.exports = class AccessoryController {
     // check if Id is valid
     if (!ObjectId.isValid(id)) {
       res.status(422).json({
-        message: `Id inválido`,
+        message: i18n.__("INVALID_ID"),
       });
       return;
     }
@@ -173,7 +174,7 @@ module.exports = class AccessoryController {
     const accessory = await Accessory.findOne({ _id: new ObjectId(id) });
     if (!accessory) {
       res.status(404).json({
-        message: `Acessório inexistente`,
+        message: i18n.__("ACCESSORY_NOT_FOUND"),
       });
       return;
     }
@@ -183,7 +184,7 @@ module.exports = class AccessoryController {
 
     if (!user.isAdmin) {
       res.status(422).json({
-        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+        message: i18n.__("UNABLE_TO_PROCESS"),
       });
       return;
     }
@@ -208,7 +209,7 @@ module.exports = class AccessoryController {
     }
     await Accessory.findByIdAndUpdate(id, updatedData);
     res.status(200).json({
-      message: `O acessório foi atualizado!`,
+      message: i18n.__("ACCESSORY_SUCCESSFULLY_UPDATED"),
     });
   }
 };
