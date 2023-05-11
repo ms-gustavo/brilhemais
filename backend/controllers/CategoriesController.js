@@ -62,4 +62,28 @@ module.exports = class CategoriesController {
       });
     }
   }
+
+  static async getCategoryById(req, res) {
+    const id = req.params.id;
+    // check if ID is valid
+    if (!ObjectId.isValid(id)) {
+      res.status(422).json({
+        message: `ID Inválido`,
+      });
+      return;
+    }
+
+    // check if category exists
+    const category = await Category.findOne({ _id: id });
+    if (!category) {
+      res.status(404).json({
+        message: `A categoria não existe`,
+      });
+      return;
+    }
+
+    res.status(200).json({
+      category,
+    });
+  }
 };

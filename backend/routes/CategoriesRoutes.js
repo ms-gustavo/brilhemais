@@ -12,5 +12,6 @@ router.post(
   CategoriesController.create
 );
 router.get("/", CategoriesController.getAll);
+router.get("/:id", CategoriesController.getCategoryById);
 
 module.exports = router;

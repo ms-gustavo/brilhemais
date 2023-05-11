@@ -99,4 +99,28 @@ module.exports = class AccessoryController {
       });
     }
   }
+
+  static async getAccessoryById(req, res) {
+    const id = req.params.id;
+    // check if ID is valid
+    if (!ObjectId.isValid(id)) {
+      res.status(422).json({
+        message: `ID Inválido`,
+      });
+      return;
+    }
+
+    // check if category exists
+    const accessory = await Accessory.findOne({ _id: id });
+    if (!accessory) {
+      res.status(404).json({
+        message: `O acessório não existe`,
+      });
+      return;
+    }
+
+    res.status(200).json({
+      accessory,
+    });
+  }
 };

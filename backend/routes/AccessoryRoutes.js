@@ -12,5 +12,6 @@ router.post(
   AccessoryController.create
 );
 router.get("/", AccessoryController.getAll);
+router.get("/:id", AccessoryController.getAccessoryById);
 
 module.exports = router;
