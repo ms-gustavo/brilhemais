@@ -10,14 +10,23 @@ function validateRegisterUser(name, email, password, confirmpassword) {
         "any.required": i18n.__("NAME_REQUIRED"),
       }),
     email: Joi.string()
+      .pattern(/^\S+@\S+\.\S+$/)
       .required()
       .messages({
         "any.required": i18n.__("EMAIL_REQUIRED"),
+        "string.pattern.base": i18n.__("INVALID_EMAIL_FORMAT"),
+      }),
+    phone: Joi.number()
+      .required()
+      .messages({
+        "any.required": i18n.__("PHONE_REQUIRED"),
       }),
     password: Joi.string()
+      .pattern(/^(?=.*[a-zA-Z]).{6,}$/)
       .required()
       .messages({
         "any.required": i18n.__("PASSWORD_REQUIRED"),
+        "string.pattern.base": i18n.__("INVALID_PASSWORD_FORMAT"),
       }),
     confirmpassword: Joi.string()
       .required()
