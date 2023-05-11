@@ -5,44 +5,38 @@ const Joi = require("joi");
 //helpers
 const getToken = require("../helpers/GetToken");
 const getUserByToken = require("../helpers/GetUserByToken");
+const {
+  validateCreateAccessory,
+  validateUpdateAccessory,
+} = require("../helpers/AccessoryValidations");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 module.exports = class AccessoryController {
   static async create(req, res) {
+    //check if user is admin
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+
+    if (!user.isAdmin) {
+      res.status(422).json({
+        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+      });
+      return;
+    }
+
     const { name, category, price, description } = req.body;
     const images = req.files;
     // Validations
-    const schema = Joi.object({
-      name: Joi.string().required().messages({
-        "any.required": `O nome é obrigatório`,
-      }),
-      category: Joi.string().required().messages({
-        "any.required": `A categoria é obrigatória`,
-      }),
-      price: Joi.number().required().messages({
-        "any.required": `O preço é obrigatório`,
-        "number.base": "O preço deve ser um número!",
-      }),
-      description: Joi.string().required().messages({
-        "any.required": `A descrição é obrigatória`,
-      }),
-      images: Joi.array().min(1).required().messages({
-        "any.required": `A imagem é obrigatória`,
-        "array.min": `A imagem é obrigatória`,
-      }),
-    });
-
-    const { error } = schema.validate({
+    const validationError = validateCreateAccessory(
       name,
       category,
       price,
       description,
-      images,
-    });
-    if (error) {
-      const errorMessage = error.details.map((detail) => detail.message);
+      images
+    );
+    if (validationError) {
       return res.status(422).json({
-        message: errorMessage,
+        message: validationError,
       });
     }
 
@@ -165,7 +159,7 @@ module.exports = class AccessoryController {
     const { name, category, price, description } = req.body;
     const images = req.files;
 
-    const updatedData = {};
+    let updatedData = {};
 
     // check if Id is valid
     if (!ObjectId.isValid(id)) {
@@ -195,32 +189,16 @@ module.exports = class AccessoryController {
     }
 
     // validations
-    const schema = Joi.object({
-      name: Joi.string().required().messages({
-        "any.required": `O nome é obrigatório`,
-      }),
-      price: Joi.number().required().messages({
-        "any.required": `O preço é obrigatório`,
-        "number.base": "O preço deve ser um número!",
-      }),
-      description: Joi.string().required().messages({
-        "any.required": `A descrição é obrigatória`,
-      }),
-    });
-    const { error, value } = schema.validate({
-      name,
-      price,
-      description,
-    });
-    if (error) {
-      const errorMessage = error.details.map((detail) => detail.message);
+    const validation = validateUpdateAccessory(name, price, description);
+    if (validation.error) {
       return res.status(422).json({
-        message: errorMessage,
+        message: validation.error,
       });
     }
-    updatedData.name = value.name;
-    updatedData.price = value.price;
-    updatedData.description = value.description;
+
+    updatedData.name = validation.value.name;
+    updatedData.price = validation.value.price;
+    updatedData.description = validation.value.description;
 
     if (images.length > 0) {
       updatedData.images = [];
