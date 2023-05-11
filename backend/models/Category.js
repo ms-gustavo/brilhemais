@@ -13,6 +13,12 @@ const Category = mongoose.model(
       type: String,
       required: true,
     },
+    accessories: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Accessory",
+      },
+    ],
   })
 );
 

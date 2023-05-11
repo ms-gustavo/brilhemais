@@ -63,8 +63,8 @@ module.exports = class AccessoryController {
       });
 
       await accessory.save();
-
-      await accessory.populate("category");
+      categoryDoc.accessories.push(accessory._id);
+      await categoryDoc.save();
 
       res.status(200).json({
         message: "Acessório criado com sucesso",
@@ -76,6 +76,5 @@ module.exports = class AccessoryController {
         message: "Ocorreu um erro ao criar o acessório",
       });
     }
-    console.log(Accessory.category.name);
   }
 };
