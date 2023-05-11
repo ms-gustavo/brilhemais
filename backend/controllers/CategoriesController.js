@@ -8,6 +8,17 @@ const ObjectId = require("mongoose").Types.ObjectId;
 
 module.exports = class CategoriesController {
   static async create(req, res) {
+    //check if user is admin
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+
+    if (!user.isAdmin) {
+      res.status(422).json({
+        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+      });
+      return;
+    }
+
     const name = req.body.name;
     const image = req.file ? req.file.filename : undefined;
 
@@ -77,6 +88,16 @@ module.exports = class CategoriesController {
   }
 
   static async deleteCategoryById(req, res) {
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+
+    if (!user.isAdmin) {
+      res.status(422).json({
+        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+      });
+      return;
+    }
+
     const id = req.params.id;
     // check if ID is valid
     if (!ObjectId.isValid(id)) {
@@ -91,16 +112,6 @@ module.exports = class CategoriesController {
     if (!category) {
       res.status(404).json({
         message: `A categoria não existe`,
-      });
-      return;
-    }
-
-    const token = getToken(req);
-    const user = await getUserByToken(token);
-
-    if (!user.isAdmin) {
-      res.status(422).json({
-        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
       });
       return;
     }
