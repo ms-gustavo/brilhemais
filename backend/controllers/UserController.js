@@ -6,40 +6,26 @@ const getToken = require("../helpers/GetToken");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const {
+  validateRegisterUser,
+  validateLoginUser,
+} = require("../helpers/UserValidations");
 
 module.exports = class UserController {
   static async register(req, res) {
     const { name, email, password, confirmpassword } = req.body;
 
     // validations
-    const schema = Joi.object({
-      name: Joi.string().required().messages({
-        "any.required": `O nome é obrigatório`,
-      }),
-      email: Joi.string().required().messages({
-        "any.required": `O e-mail é obrigatório`,
-      }),
-      password: Joi.string().required().messages({
-        "any.required": `A senha é obrigatória`,
-      }),
-      confirmpassword: Joi.string()
-        .required()
-        .valid(Joi.ref("password"))
-        .messages({
-          "any.required": `A confirmação de senha é obrigatória`,
-          "any.only": `A confirmação de senha deve ser igual à senha`,
-        }),
-    });
-    const { error } = schema.validate({
+    const validationError = validateRegisterUser(
       name,
       email,
       password,
-      confirmpassword,
-    });
-    if (error) {
-      const errorMessage = error.details.map((detail) => detail.message);
+      confirmpassword
+    );
+
+    if (validationError) {
       return res.status(422).json({
-        message: errorMessage,
+        message: validationError,
       });
     }
 
@@ -74,22 +60,11 @@ module.exports = class UserController {
   static async login(req, res) {
     const { email, password } = req.body;
 
-    const schema = Joi.object({
-      email: Joi.string().required().messages({
-        "any.required": `O e-mail é obrigatório`,
-      }),
-      password: Joi.string().required().messages({
-        "any.required": `A senha é obrigatória`,
-      }),
-    });
-    const { error } = schema.validate({
-      email,
-      password,
-    });
-    if (error) {
-      const errorMessage = error.details.map((detail) => detail.message);
+    const validationError = validateLoginUser(email, password);
+
+    if (validationError) {
       return res.status(422).json({
-        message: errorMessage,
+        message: validationError,
       });
     }
     //check if user exists
