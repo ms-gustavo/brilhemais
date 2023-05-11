@@ -14,7 +14,7 @@ const Admin = mongoose.model(
     },
     isAdmin: {
       type: Boolean,
-      required: true,
+      default: false,
     },
   })
 );
