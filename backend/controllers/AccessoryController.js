@@ -4,7 +4,7 @@ const Joi = require("joi");
 
 //helpers
 const getToken = require("../helpers/GetToken");
-const getUserByToken = require("../helpers/GetAdminByToken");
+const getAdminByToken = require("../helpers/GetAdminByToken");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 module.exports = class AccessoryController {
@@ -121,6 +121,41 @@ module.exports = class AccessoryController {
 
     res.status(200).json({
       accessory,
+    });
+  }
+
+  static async deleteAccessoryById(req, res) {
+    const id = req.params.id;
+    // check if ID is valid
+    if (!ObjectId.isValid(id)) {
+      res.status(422).json({
+        message: `ID Inválido`,
+      });
+      return;
+    }
+
+    // check if category exists
+    const accessory = await Accessory.findOne({ _id: id });
+    if (!accessory) {
+      res.status(404).json({
+        message: `O acessório não existe`,
+      });
+      return;
+    }
+
+    const token = getToken(req);
+    const admin = await getAdminByToken(token);
+
+    if (!admin.isAdmin) {
+      res.status(422).json({
+        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+      });
+      return;
+    }
+
+    await Accessory.findByIdAndRemove(id);
+    res.status(200).json({
+      message: `Accesório excluído.`,
     });
   }
 };

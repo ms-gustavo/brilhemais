@@ -12,6 +12,10 @@ const Admin = mongoose.model(
       type: String,
       required: true,
     },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+    },
   })
 );
 

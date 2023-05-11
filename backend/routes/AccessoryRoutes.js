@@ -13,5 +13,6 @@ router.post(
 );
 router.get("/", AccessoryController.getAll);
 router.get("/:id", AccessoryController.getAccessoryById);
+router.delete("/:id", AccessoryController.deleteAccessoryById);
 
 module.exports = router;
