@@ -1,48 +1,43 @@
 const Accessory = require("../models/Accessory");
 const Category = require("../models/Category");
-const Joi = require("joi");
 
+const i18n = require("../helpers/i18n");
+i18n.setLocale("br");
 //helpers
 const getToken = require("../helpers/GetToken");
 const getUserByToken = require("../helpers/GetUserByToken");
+const {
+  validateCreateAccessory,
+  validateUpdateAccessory,
+} = require("../helpers/AccessoryValidations");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 module.exports = class AccessoryController {
   static async create(req, res) {
+    //check if user is admin
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+
+    if (!user.isAdmin) {
+      res.status(422).json({
+        message: i18n.__("UNABLE_TO_PROCESS"),
+      });
+      return;
+    }
+
     const { name, category, price, description } = req.body;
     const images = req.files;
     // Validations
-    const schema = Joi.object({
-      name: Joi.string().required().messages({
-        "any.required": `O nome é obrigatório`,
-      }),
-      category: Joi.string().required().messages({
-        "any.required": `A categoria é obrigatória`,
-      }),
-      price: Joi.number().required().messages({
-        "any.required": `O preço é obrigatório`,
-        "number.base": "O preço deve ser um número!",
-      }),
-      description: Joi.string().required().messages({
-        "any.required": `A descrição é obrigatória`,
-      }),
-      images: Joi.array().min(1).required().messages({
-        "any.required": `A imagem é obrigatória`,
-        "array.min": `A imagem é obrigatória`,
-      }),
-    });
-
-    const { error } = schema.validate({
+    const validationError = validateCreateAccessory(
       name,
       category,
       price,
       description,
-      images,
-    });
-    if (error) {
-      const errorMessage = error.details.map((detail) => detail.message);
+      images
+    );
+    if (validationError) {
       return res.status(422).json({
-        message: errorMessage,
+        message: validationError,
       });
     }
 
@@ -51,7 +46,7 @@ module.exports = class AccessoryController {
 
       if (!categoryDoc) {
         return res.status(404).json({
-          message: `Categoria não encontrada`,
+          message: i18n.__("CATEGORY_NOT_FOUND"),
         });
       }
 
@@ -68,13 +63,13 @@ module.exports = class AccessoryController {
       await categoryDoc.save();
 
       res.status(200).json({
-        message: "Acessório criado com sucesso",
+        message: i18n.__("ACCESSORY_SUCCESSFULLY_CREATED"),
         accessory,
       });
     } catch (error) {
       console.error(error);
       res.status(500).json({
-        message: "Ocorreu um erro ao criar o acessório",
+        message: i18n.__("ACCESSORY_ERROR_CREATED"),
       });
     }
   }
@@ -96,7 +91,7 @@ module.exports = class AccessoryController {
       });
     } catch (error) {
       res.status(500).json({
-        message: `Ocorreu um erro ao obter os acessórios.`,
+        message: i18n.__("ACCESSORY_ERROR_GET"),
       });
     }
   }
@@ -106,7 +101,7 @@ module.exports = class AccessoryController {
     // check if ID is valid
     if (!ObjectId.isValid(id)) {
       res.status(422).json({
-        message: `ID Inválido`,
+        message: i18n.__("INVALID_ID"),
       });
       return;
     }
@@ -115,7 +110,7 @@ module.exports = class AccessoryController {
     const accessory = await Accessory.findOne({ _id: id });
     if (!accessory) {
       res.status(404).json({
-        message: `O acessório não existe`,
+        message: i18n.__("ACCESSORY_NOT_FOUND"),
       });
       return;
     }
@@ -130,7 +125,7 @@ module.exports = class AccessoryController {
     // check if ID is valid
     if (!ObjectId.isValid(id)) {
       res.status(422).json({
-        message: `ID Inválido`,
+        message: i18n.__("INVALID_ID"),
       });
       return;
     }
@@ -139,7 +134,7 @@ module.exports = class AccessoryController {
     const accessory = await Accessory.findOne({ _id: id });
     if (!accessory) {
       res.status(404).json({
-        message: `O acessório não existe`,
+        message: i18n.__("ACCESSORY_NOT_FOUND"),
       });
       return;
     }
@@ -149,14 +144,14 @@ module.exports = class AccessoryController {
 
     if (!user.isAdmin) {
       res.status(422).json({
-        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+        message: i18n.__("UNABLE_TO_PROCESS"),
       });
       return;
     }
 
     await Accessory.findByIdAndRemove(id);
     res.status(200).json({
-      message: `Accesório excluído.`,
+      message: i18n.__("ACCESSORY_SUCCESSFULLY_REMOVED"),
     });
   }
 
@@ -165,12 +160,12 @@ module.exports = class AccessoryController {
     const { name, category, price, description } = req.body;
     const images = req.files;
 
-    const updatedData = {};
+    let updatedData = {};
 
     // check if Id is valid
     if (!ObjectId.isValid(id)) {
       res.status(422).json({
-        message: `Id inválido`,
+        message: i18n.__("INVALID_ID"),
       });
       return;
     }
@@ -179,7 +174,7 @@ module.exports = class AccessoryController {
     const accessory = await Accessory.findOne({ _id: new ObjectId(id) });
     if (!accessory) {
       res.status(404).json({
-        message: `Acessório inexistente`,
+        message: i18n.__("ACCESSORY_NOT_FOUND"),
       });
       return;
     }
@@ -189,38 +184,22 @@ module.exports = class AccessoryController {
 
     if (!user.isAdmin) {
       res.status(422).json({
-        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+        message: i18n.__("UNABLE_TO_PROCESS"),
       });
       return;
     }
 
     // validations
-    const schema = Joi.object({
-      name: Joi.string().required().messages({
-        "any.required": `O nome é obrigatório`,
-      }),
-      price: Joi.number().required().messages({
-        "any.required": `O preço é obrigatório`,
-        "number.base": "O preço deve ser um número!",
-      }),
-      description: Joi.string().required().messages({
-        "any.required": `A descrição é obrigatória`,
-      }),
-    });
-    const { error, value } = schema.validate({
-      name,
-      price,
-      description,
-    });
-    if (error) {
-      const errorMessage = error.details.map((detail) => detail.message);
+    const validation = validateUpdateAccessory(name, price, description);
+    if (validation.error) {
       return res.status(422).json({
-        message: errorMessage,
+        message: validation.error,
       });
     }
-    updatedData.name = value.name;
-    updatedData.price = value.price;
-    updatedData.description = value.description;
+
+    updatedData.name = validation.value.name;
+    updatedData.price = validation.value.price;
+    updatedData.description = validation.value.description;
 
     if (images.length > 0) {
       updatedData.images = [];
@@ -230,7 +209,7 @@ module.exports = class AccessoryController {
     }
     await Accessory.findByIdAndUpdate(id, updatedData);
     res.status(200).json({
-      message: `O acessório foi atualizado!`,
+      message: i18n.__("ACCESSORY_SUCCESSFULLY_UPDATED"),
     });
   }
 };

@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const i18n = require("../helpers/i18n");
+i18n.setLocale("br");
 
 const tokenSecret = process.env.TOKEN_SECRET;
 
@@ -14,7 +16,7 @@ const createUserToken = async (user, req, res) => {
   );
   //return token
   res.status(200).json({
-    message: `Você está autenticado!`,
+    message: i18n.__("AUTHENTICATION_SUCCESSFULLY"),
     token: token,
     userId: user._id,
   });
