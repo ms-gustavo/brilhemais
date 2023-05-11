@@ -77,4 +77,26 @@ module.exports = class AccessoryController {
       });
     }
   }
+
+  static async getAll(req, res) {
+    try {
+      const accessories = await Accessory.find()
+        .sort("-createdAt")
+        .populate("category", "name");
+
+      const accessoriesWithCategoryName = accessories.map((accessory) => {
+        const category = accessory.category;
+        const categoryName = category ? category.name : null;
+        return { ...accessory.toObject(), categoryName };
+      });
+
+      res.status(200).json({
+        accessories: accessoriesWithCategoryName,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: `Ocorreu um erro ao obter os acessórios.`,
+      });
+    }
+  }
 };

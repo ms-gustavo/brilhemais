@@ -11,5 +11,6 @@ router.post(
   imageUpload.array("images"),
   AccessoryController.create
 );
+router.get("/", AccessoryController.getAll);
 
 module.exports = router;
