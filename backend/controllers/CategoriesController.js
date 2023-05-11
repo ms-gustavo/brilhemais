@@ -3,6 +3,7 @@ const Joi = require("joi");
 // helpers
 const getToken = require("../helpers/GetToken");
 const getUserByToken = require("../helpers/GetUserByToken");
+const { validateCreateCategory } = require("../helpers/CategoriesValidations");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 module.exports = class CategoriesController {
@@ -11,22 +12,10 @@ module.exports = class CategoriesController {
     const image = req.file ? req.file.filename : undefined;
 
     // validations
-    const schema = Joi.object({
-      name: Joi.string().required().messages({
-        "any.required": `O nome é obrigatório`,
-      }),
-      image: Joi.string().required().messages({
-        "any.required": `A imagem é obrigatória`,
-      }),
-    });
-    const { error, value } = schema.validate({
-      name,
-      image,
-    });
-    if (error) {
-      const errorMessage = error.details.map((detail) => detail.message);
+    const validationError = validateCreateCategory(name, image);
+    if (validationError) {
       return res.status(422).json({
-        message: errorMessage,
+        message: validationError,
       });
     }
 
