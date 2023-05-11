@@ -13,5 +13,6 @@ router.post(
 );
 router.get("/", CategoriesController.getAll);
 router.get("/:id", CategoriesController.getCategoryById);
+router.delete("/:id", CategoriesController.deleteCategoryById);
 
 module.exports = router;

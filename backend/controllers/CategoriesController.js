@@ -86,4 +86,39 @@ module.exports = class CategoriesController {
       category,
     });
   }
+
+  static async deleteCategoryById(req, res) {
+    const id = req.params.id;
+    // check if ID is valid
+    if (!ObjectId.isValid(id)) {
+      res.status(422).json({
+        message: `ID Inválido`,
+      });
+      return;
+    }
+
+    // check if category exists
+    const category = await Category.findOne({ _id: id });
+    if (!category) {
+      res.status(404).json({
+        message: `A categoria não existe`,
+      });
+      return;
+    }
+
+    const token = getToken(req);
+    const admin = await getAdminByToken(token);
+
+    if (!admin.isAdmin) {
+      res.status(422).json({
+        message: `Houve um problema em processar a sua solicitação! Tente novamente mais tarde.`,
+      });
+      return;
+    }
+
+    await Category.findByIdAndRemove(id);
+    res.status(200).json({
+      message: `Categoria excluída.`,
+    });
+  }
 };
