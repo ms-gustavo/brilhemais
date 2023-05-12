@@ -120,7 +120,7 @@ module.exports = class AccessoryController {
       if (!accessories || accessories.length === 0) {
         return res
           .status(400)
-          .json({ message: i18n.__("ACCESSORY_NOT_FOUND") });
+          .json({ message: i18n.__("DONT_HAVE_ACCESSORIES") });
       }
       return res.json({ accessories });
     } catch (err) {
