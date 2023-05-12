@@ -33,5 +33,9 @@
   "PRICE_IS_NUMBER": "O preço precisa ser um número",
   "PRICE_REQUIRED": "O preço é obrigatório.",
   "UNABLE_TO_PROCESS": "Houve um problema em processar a sua solicitação! Tente novamente mais tarde.",
-  "USER_NOT_EXISTS": "O usuário não existe."
+  "USER_NOT_EXISTS": "O usuário não existe.",
+  "INVALID_TOKEN": "Token inválido.",
+  "PHONE_REQUIRED": "O número de telefone é obrigatório.",
+  "USER_NOT_EXISTS": "O usuário não existe.",
+  "INVALID_PASSWORD": "A senha está inválida."
 }
