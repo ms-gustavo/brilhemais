@@ -32,6 +32,15 @@ module.exports = class CategoriesController {
       });
     }
 
+    // check if category already exists
+    const categoryExists = await Category.findOne({ name });
+    if (categoryExists) {
+      res.status(422).json({
+        message: i18n.__("CATEGORY_EXISTS"),
+      });
+      return;
+    }
+
     const category = new Category({
       name,
       image,

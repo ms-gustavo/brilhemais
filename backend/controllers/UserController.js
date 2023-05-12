@@ -14,12 +14,13 @@ const {
 
 module.exports = class UserController {
   static async register(req, res) {
-    const { name, email, password, confirmpassword } = req.body;
+    const { name, email, phone, password, confirmpassword } = req.body;
 
     // validations
     const validationError = validateRegisterUser(
       name,
       email,
+      phone,
       password,
       confirmpassword
     );
@@ -46,6 +47,7 @@ module.exports = class UserController {
     const user = new User({
       name,
       email,
+      phone,
       password: passwordHash,
     });
 
