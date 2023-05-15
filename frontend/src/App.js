@@ -10,7 +10,9 @@ function App() {
     <Router>
       <NavigationBar />
       <Container>
-        <Routes></Routes>
+        <Routes>
+          <Route />
+        </Routes>
       </Container>
       <Footer />
     </Router>
