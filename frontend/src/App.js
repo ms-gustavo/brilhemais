@@ -4,17 +4,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from "./components/layouts/NavigationBar";
 import Footer from "./components/layouts/Footer";
 import Container from "./components/layouts/Container";
+import Home from "./components/pages/Home/Home";
+import Register from "./components/pages/Auth/Register";
+import { UserProvider } from "./context/UserContext";
+import Message from "./components/layouts/Message";
 
 function App() {
   return (
     <Router>
-      <NavigationBar />
-      <Container>
-        <Routes>
-          <Route />
-        </Routes>
-      </Container>
-      <Footer />
+      <UserProvider>
+        <NavigationBar />
+        <Message />
+        <Container>
+          <Routes>
+            <Route path="/register" element={<Register />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </Container>
+        <Footer />
+      </UserProvider>
     </Router>
   );
 }

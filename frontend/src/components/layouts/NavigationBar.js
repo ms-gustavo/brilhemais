@@ -24,7 +24,7 @@ const NavigationBar = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link href="#">Entrar</Nav.Link>
-          <Nav.Link href="#">Registrar</Nav.Link>
+          <Nav.Link href="/register">Registrar</Nav.Link>
           <NavDropdown
             title="Produtos"
             id="basic-nav-dropdown"

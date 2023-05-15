@@ -24,17 +24,19 @@ export default function useAuth() {
     let msgType = `success`;
 
     try {
-      const data = await api.post("/users/register", user).then((response) => {
+      const data = await api.post("/user/register", user).then((response) => {
         return response.data;
       });
       await authUser(data);
     } catch (error) {
       const errorMsg =
-        error.response?.data.message ??
-        `Ocorre um erro no processamento da solicitação.`;
+        error.response?.data?.message ??
+        "Ocorreu um erro no processamento da solicitação.";
+
       msgText = errorMsg;
       msgType = `error`;
     }
+
     setFlashMessage(msgText, msgType);
   }
 
@@ -46,11 +48,11 @@ export default function useAuth() {
   }
 
   function logout() {
-    const msgText = `Logout realizado com sucesso.`;
+    const msgText = `Logout realizado com sucesso!`;
     const msgType = `success`;
 
     setAuthenticated(false);
-    localStorage.Storage.removeItem("token");
+    localStorage.removeItem("token");
     api.defaults.headers.Authorization = undefined;
     navigate("/");
 
@@ -65,6 +67,7 @@ export default function useAuth() {
       const data = await api.post("/users/login", user).then((response) => {
         return response.data;
       });
+
       await authUser(data);
     } catch (error) {
       msgText = error.response.data.message;
