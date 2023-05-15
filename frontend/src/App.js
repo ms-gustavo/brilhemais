@@ -8,6 +8,7 @@ import Home from "./components/pages/Home/Home";
 import Register from "./components/pages/Auth/Register";
 import { UserProvider } from "./context/UserContext";
 import Message from "./components/layouts/Message";
+import Login from "./components/pages/Auth/Login";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Message />
         <Container>
           <Routes>
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<Home />} />
           </Routes>
