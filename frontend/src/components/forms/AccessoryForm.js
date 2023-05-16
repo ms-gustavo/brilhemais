@@ -23,12 +23,15 @@ function AccessoryForm({ handleSubmit, accessoryData, btnText }) {
   function handleChange(e) {
     setAccessory({ ...accessory, [e.target.name]: e.target.value });
   }
-  //   function handleCategory(e) {
-  //     setAccessory({
-  //       ...accessory,
-  //       category: e.target.options[e.target.selectedIndex].value,
-  //     });
-  //   }
+
+  function handleCategory(e) {
+    const categoryId = e.target.value;
+    setAccessory({
+      ...accessory,
+      category: categoryId,
+    });
+  }
+
   function submit(e) {
     e.preventDefault();
     handleSubmit(accessory);
@@ -87,25 +90,16 @@ function AccessoryForm({ handleSubmit, accessoryData, btnText }) {
           handleOnChange={handleChange}
           value={accessory.description || ""}
         />
-        <Input
-          text="Categoria do Acessório"
-          type="text"
-          name="category"
-          placeholder="Digite a descrição do acessório"
-          handleOnChange={handleChange}
-          value={accessory.category || ""}
-        />
-
-        {/* <div className={styles.form_control}>
-          <label htmlFor="categorySelect">Categoria do Acessório</label>
-          <select onChange={handleCategory} id="categorySelect">
+        <div className={styles.form_control}>
+          <select onChange={handleCategory} value={accessory.category || ""}>
+            <option value="Categorias">Selecione uma categoria</option>
             {categories.map((category) => (
-              <option key={category._id} value={category._id}>
+              <option key={category._id} value={category.name}>
                 {category.name}
               </option>
             ))}
           </select>
-        </div> */}
+        </div>
         <input type="submit" value={btnText} />
       </form>
     </>
