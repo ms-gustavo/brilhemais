@@ -14,6 +14,7 @@ import Earrings from "./components/pages/Products/Earrings";
 import Bracelets from "./components/pages/Products/Bracelets";
 import AllProducts from "./components/pages/Products/AllProducts";
 import AddAccessory from "./components/pages/Products/AddProduct";
+import ManageProducts from "./components/pages/Products/ManageProducts";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/necklaces" element={<Necklaces />} />
             <Route path="/earrings" element={<Earrings />} />
             <Route path="/Bracelets" element={<Bracelets />} />
+            <Route path="/accessory/all" element={<ManageProducts />} />
             <Route path="/allproducts" element={<AllProducts />} />
             <Route path="/" element={<Home />} />
           </Routes>

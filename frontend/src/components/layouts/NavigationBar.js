@@ -61,7 +61,7 @@ const NavigationBar = () => {
               <Nav.Link as={Link} to="/accessory/create">
                 Cadastrar Produto
               </Nav.Link>
-              <Nav.Link as={Link} to="#">
+              <Nav.Link as={Link} to="/accessory/all">
                 Listar todos os Produtos
               </Nav.Link>
             </>
