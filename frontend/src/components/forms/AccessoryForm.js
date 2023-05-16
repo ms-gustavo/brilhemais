@@ -37,7 +37,24 @@ function AccessoryForm({ handleSubmit, accessoryData, btnText }) {
   return (
     <>
       <form onSubmit={submit} className={formStyles.form_container}>
-        <div className={formStyles.preview_images}>Teste Img</div>
+        <div className={formStyles.preview_images}>
+          {preview.length > 0
+            ? preview.map((image, index) => (
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt={accessory.name}
+                  key={`${accessory.name}+${index}`}
+                />
+              ))
+            : accessory.images &&
+              accessory.images.map((image, index) => (
+                <img
+                  src={`${process.env.REACT_APP_API}images/accessory/${image}`}
+                  alt={accessory.name}
+                  key={`${accessory.name}+${index}`}
+                />
+              ))}
+        </div>
         <Input
           text="Imagens do Acessório"
           type="file"
