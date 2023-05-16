@@ -21,8 +21,8 @@ const NavigationBar = () => {
   };
 
   return (
-    <Navbar bg="light" expand="sm">
-      <Navbar.Brand href="/">
+    <Navbar bg="light" expand="md" className="d-flex">
+      <Navbar.Brand as={Link} to="/">
         <div className="d-flex align-items-center">
           <img
             src={Logo}
@@ -31,8 +31,8 @@ const NavigationBar = () => {
             className="d-inline-block align-top"
             alt="Logo"
           />
-          <span className="ml-2">Brilhe Mais</span>
-          <AiFillStar color="yellow" size={16} className="ml-2" />
+          <span className="ml-2 site-title">Brilhe Mais </span>
+          <AiFillStar color="yellow" size={25} className="ml-3" />
         </div>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -43,17 +43,17 @@ const NavigationBar = () => {
             id="basic-nav-dropdown"
             className="dropdown-menu-right"
           >
-            <NavDropdown.Item as={Link} to="/register">
+            <NavDropdown.Item as={Link} to="/necklaces">
               Colar
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/">
+            <NavDropdown.Item as={Link} to="/bracelets">
               Pulseiras
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/register">
+            <NavDropdown.Item as={Link} to="/earrings">
               Brincos
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="/">
+            <NavDropdown.Item as={Link} to="/allproducts">
               Ver todos os produtos
             </NavDropdown.Item>
           </NavDropdown>
@@ -61,6 +61,9 @@ const NavigationBar = () => {
             <>
               <Nav.Link as={Link} to="#">
                 Cadastrar Produto
+              </Nav.Link>
+              <Nav.Link as={Link} to="#">
+                Listar todos os Produtos
               </Nav.Link>
             </>
           )}
