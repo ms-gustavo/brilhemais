@@ -16,9 +16,9 @@ module.exports = class AccessoryController {
   static async create(req, res) {
     //check if user is admin
     const token = getToken(req);
-    const user = await getUserByToken(token);
-
-    if (!user.isAdmin) {
+    const decoded = await getUserByToken(token);
+    console.log(decoded);
+    if (!decoded.isAdmin) {
       res.status(422).json({
         message: i18n.__("UNABLE_TO_PROCESS"),
       });
@@ -175,9 +175,9 @@ module.exports = class AccessoryController {
     }
 
     const token = getToken(req);
-    const user = await getUserByToken(token);
+    const decoded = await getUserByToken(token);
 
-    if (!user.isAdmin) {
+    if (!decoded.isAdmin) {
       res.status(422).json({
         message: i18n.__("UNABLE_TO_PROCESS"),
       });
@@ -215,9 +215,9 @@ module.exports = class AccessoryController {
     }
     // check if user is admin
     const token = getToken(req);
-    const user = await getUserByToken(token);
+    const decoded = await getUserByToken(token);
 
-    if (!user.isAdmin) {
+    if (!decoded.isAdmin) {
       res.status(422).json({
         message: i18n.__("UNABLE_TO_PROCESS"),
       });

@@ -9,8 +9,8 @@ const createUserToken = async (user, req, res) => {
   //create token
   const token = jwt.sign(
     {
-      userName: user.name,
-      userId: user._id,
+      name: user.name,
+      id: user._id,
       isAdmin: user.isAdmin,
     },
     tokenSecret
