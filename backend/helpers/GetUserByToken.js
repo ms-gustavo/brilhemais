@@ -22,7 +22,7 @@ const getUserByToken = async (token) => {
   const userId = decoded.id;
   const user = await User.findOne({ _id: userId });
   console.log("user getuserbytoken", user);
-  return decoded;
+  return user;
 };
 
 module.exports = getUserByToken;
