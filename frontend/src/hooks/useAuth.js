@@ -1,11 +1,9 @@
-// api
+/// api
 import api from "../utils/api";
-
 // hooks
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useFlashMessage from "./useFlashMessage";
-
 export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(false);
   const { setFlashMessage } = useFlashMessage();
@@ -42,7 +40,6 @@ export default function useAuth() {
 
   async function authUser(data) {
     setAuthenticated(true);
-
     localStorage.setItem("token", JSON.stringify(data.token));
     navigate("/");
   }
