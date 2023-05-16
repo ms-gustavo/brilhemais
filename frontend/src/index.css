@@ -17,6 +17,10 @@ h1 {
 }
 
 .site-title {
-  font-size: 2em;
+  font-size: 1.8em;
+  font-family: "Great Vibes", cursive;
+}
+
+.footer-text {
   font-family: "Great Vibes", cursive;
 }

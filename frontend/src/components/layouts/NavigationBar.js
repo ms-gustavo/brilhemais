@@ -1,4 +1,3 @@
-import api from "../../utils/api";
 import { useContext, useState, useEffect } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
@@ -8,7 +7,7 @@ import { Link } from "react-router-dom";
 import useDecodedToken from "../../utils/useDecodedToken";
 
 const NavigationBar = () => {
-  const { authenticated, logout, isAdmin } = useContext(Context);
+  const { authenticated, logout } = useContext(Context);
   const [token, setToken] = useState(null);
   const [decodedToken] = useDecodedToken();
   useEffect(() => {

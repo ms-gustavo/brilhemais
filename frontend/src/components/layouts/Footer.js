@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container py-4">
         <div className="row">
           <div className="col-md-6">
-            <h4 className="mb-3">
+            <h4 className="mb-3 footer-text">
               Brilhe Mais{" "}
               <AiFillStar color="yellow" size={16} className="ml-2" />
             </h4>
