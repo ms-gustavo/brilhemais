@@ -16,12 +16,12 @@ const getUserByToken = async (token) => {
       message: i18n.__("ACCESS_DENIED"),
     });
   }
-  console.log("token secret", tokenSecret);
+
   const decoded = jwt.verify(token, tokenSecret);
-  console.log("decoded", decoded);
-  const userId = decoded.id;
+
+  const userId = decoded.userId;
   const user = await User.findOne({ _id: userId });
-  console.log("user getuserbytoken", user);
+  console.log("getuser", user);
   return user;
 };
 
