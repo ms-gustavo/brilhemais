@@ -96,6 +96,41 @@ module.exports = class AccessoryController {
     }
   }
 
+  static async getAccessoryByCategory(req, res) {
+    try {
+      const categoryId = req.params.id;
+      if (!ObjectId.isValid(categoryId)) {
+        res.status(422).json({
+          message: i18n.__("INVALID_ID"),
+        });
+        return;
+      }
+
+      // check if category exists
+      const category = await Category.findOne({ _id: categoryId });
+      if (!category) {
+        res.status(404).json({
+          message: i18n.__("CATEGORY_NOT_FOUND"),
+        });
+        return;
+      }
+
+      // find accessories by categories
+      const accessories = await Accessory.find({ category: categoryId });
+      if (!accessories || accessories.length === 0) {
+        return res
+          .status(400)
+          .json({ message: i18n.__("DONT_HAVE_ACCESSORIES") });
+      }
+      return res.json({ accessories });
+    } catch (err) {
+      console.log(err);
+      return res
+        .status(500)
+        .json({ message: i18n.__("ERROR_ACCESSORIES_BY_CATEGORY") });
+    }
+  }
+
   static async getAccessoryById(req, res) {
     const id = req.params.id;
     // check if ID is valid
@@ -106,7 +141,7 @@ module.exports = class AccessoryController {
       return;
     }
 
-    // check if category exists
+    // check if accessory exists
     const accessory = await Accessory.findOne({ _id: id });
     if (!accessory) {
       res.status(404).json({

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const CategoriesController = require("../controllers/CategoriesController");
+const AccessoryController = require("../controllers/AccessoryController");
 
 //middlewares
 const verifyToken = require("../helpers/VerifyToken");
@@ -14,5 +15,6 @@ router.post(
 router.get("/", CategoriesController.getAll);
 router.get("/:id", CategoriesController.getCategoryById);
 router.delete("/:id", CategoriesController.deleteCategoryById);
+router.get("/:id/accessories", AccessoryController.getAccessoryByCategory);
 
 module.exports = router;

@@ -21,6 +21,11 @@ function validateRegisterUser(name, email, phone, password, confirmpassword) {
       .messages({
         "any.required": i18n.__("PHONE_REQUIRED"),
       }),
+    phone: Joi.number()
+      .required()
+      .messages({
+        "any.required": i18n.__("PHONE_REQUIRED"),
+      }),
     password: Joi.string()
       .pattern(/^(?=.*[a-zA-Z]).{6,}$/)
       .required()

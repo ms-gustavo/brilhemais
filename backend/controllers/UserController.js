@@ -75,7 +75,7 @@ module.exports = class UserController {
 
     if (!user) {
       res.status(422).json({
-        message: `O usuário não existe`,
+        message: i18n.__("USER_NOT_EXISTS"),
       });
       return;
     }
@@ -83,7 +83,7 @@ module.exports = class UserController {
     const checkPassword = await bcrypt.compare(password, user.password);
 
     if (!checkPassword) {
-      res.status(422).json({ message: `A senha está inválida!` });
+      res.status(422).json({ message: i18n.__("INVALID_PASSWORD") });
       return;
     }
 
