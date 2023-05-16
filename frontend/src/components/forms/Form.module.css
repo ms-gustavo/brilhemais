@@ -30,14 +30,14 @@
   font-weight: bold;
 }
 
-/* forms de pets */
-.preview_pet_images {
+/* forms */
+.preview_images {
   display: flex;
   justify-content: center;
   margin: 1em;
 }
 
-.preview_pet_images img {
+.preview_images img {
   width: 100px;
   height: 100px;
   margin-left: 1em;
