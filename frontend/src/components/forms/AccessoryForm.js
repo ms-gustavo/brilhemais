@@ -90,16 +90,18 @@ function AccessoryForm({ handleSubmit, accessoryData, btnText }) {
           handleOnChange={handleChange}
           value={accessory.description || ""}
         />
-        <div className={styles.form_control}>
-          <select onChange={handleCategory} value={accessory.category || ""}>
-            <option value="Categorias">Selecione uma categoria</option>
-            {categories.map((category) => (
-              <option key={category._id} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        {accessoryData === undefined && (
+          <div className={styles.form_control}>
+            <select onChange={handleCategory} value={accessory.category || ""}>
+              <option value="Categorias">Selecione uma categoria</option>
+              {categories.map((category) => (
+                <option key={category._id} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
         <input type="submit" value={btnText} />
       </form>
     </>
