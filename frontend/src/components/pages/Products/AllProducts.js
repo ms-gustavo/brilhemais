@@ -16,26 +16,46 @@ function AllProducts() {
 
   return (
     <section>
-      <div className={styles.product_home_header}>
-        <h1 className="text-center">Todos os acessórios</h1>
+      <div className={`${styles.product_home_header} text-center`}>
+        <h1>Todos os acessórios</h1>
       </div>
-      <Row className="justify-content-center">
+      <Row className={`${styles.product_container} justify-content-center`}>
         {products.length > 0 &&
-          products.map((product) => (
-            <Col key={product._id} xs={12} sm={6} md={4} lg={3}>
+          products.map((product, index) => (
+            <div
+              className={`card ${styles.product_card}`}
+              style={{ width: "18rem", margin: "10px" }}
+              key={index}
+            >
               <img
+                className={`${styles.product_card_image} card-img-top`}
                 src={`${process.env.REACT_APP_API}/images/accessory/${product.images[0].filename}`}
                 alt={product.name}
-                className="img-fluid rounded-circle"
               />
-              <h3 className="text-center">{product.name}</h3>
-              <p className="text-center">
-                <span className="font-weight-bold">{product.description}</span>
-              </p>
-              <p className="text-center">
-                <span className="font-weight-bold">R${product.price}</span>
-              </p>
-            </Col>
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text font-weight-bold">
+                  {product.description}
+                </p>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">R${product.price}</li>
+                <li className="list-group-item">
+                  Categoria: {product.category.name}
+                </li>
+              </ul>
+              <div className="card-body">
+                <a href="#" className="card-link">
+                  Detalhes
+                </a>
+                <Link
+                  className="card-link"
+                  to={`/category/${product.category._id}`}
+                >
+                  Ver categoria
+                </Link>
+              </div>
+            </div>
           ))}
       </Row>
     </section>
