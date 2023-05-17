@@ -52,7 +52,7 @@ function AccessoryForm({ handleSubmit, accessoryData, btnText }) {
             : accessory.images &&
               accessory.images.map((image, index) => (
                 <img
-                  src={`${process.env.REACT_APP_API}images/accessory/${image}`}
+                  src={`${process.env.REACT_APP_API}images/accessory/${image.filename}`}
                   alt={accessory.name}
                   key={`${accessory.name}+${index}`}
                 />

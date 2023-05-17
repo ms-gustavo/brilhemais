@@ -14,6 +14,7 @@ import AddAccessory from "./components/pages/Products/AddProduct";
 import ManageProducts from "./components/pages/Products/ManageProducts";
 import CategoryPage from "./components/pages/Products/CategoryPage";
 import ProductDetails from "./components/pages/Products/ProductDetails";
+import EditProduct from "./components/pages/Products/EditProduct";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/accessory/edit/:id" element={<EditProduct />} />
             <Route path="/category/:categoryId" element={<CategoryPage />} />
             <Route path="/accessory/:id" element={<ProductDetails />} />
             <Route path="/accessory/create" element={<AddAccessory />} />

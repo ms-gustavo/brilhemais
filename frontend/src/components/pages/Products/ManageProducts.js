@@ -73,6 +73,7 @@ function ManageProducts() {
                 >
                   Excluir
                 </button>
+                <Link to={`/accessory/edit/${product._id}`}>Editar</Link>
               </div>
             </div>
           ))}
