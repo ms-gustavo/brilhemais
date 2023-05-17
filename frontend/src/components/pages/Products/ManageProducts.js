@@ -1,11 +1,10 @@
 import api from "../../../utils/api";
-import styles from "./ManageProducts.module.css";
 import { useNavigate } from "react-router-dom";
 import useDecodedToken from "../../../utils/useDecodedToken";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import RoundedImage from "../../layouts/RoundedImage";
 import useFlashMessage from "../../../hooks/useFlashMessage";
+import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 function ManageProducts() {
   const [token] = useState(localStorage.getItem("token") || null);
@@ -51,31 +50,53 @@ function ManageProducts() {
 
   return (
     <section>
-      <div className={styles.procutlist_header}>
+      <div className="text-center border-bottom pb-3">
         <h1>Todos os produtos</h1>
         <Link to="/accessory/create">Cadastrar Produto</Link>
       </div>
-      <div className={styles.productlist_container}>
+      <div>
         {products.length > 0 &&
-          products.map((product) => (
-            <div className={styles.productlist_row} key={product._id}>
-              <RoundedImage
-                src={`${process.env.REACT_APP_API}images/accessory/${product.images[0].filename}`}
-                alt={product.name}
-                width="px75"
-              />
-              <span className="bold">{product.name}</span>
-              <div className={styles.actions}>
-                <button
-                  onClick={() => {
-                    removeProduct(product._id);
-                  }}
-                >
-                  Excluir
-                </button>
-                <Link to={`/accessory/edit/${product._id}`}>Editar</Link>
-              </div>
-            </div>
+          products.map((product, index) => (
+            <Container key={index}>
+              <Row
+                key={product._id}
+                className="align-items-center border-bottom pb-3"
+              >
+                <Col xs={12} md={4}>
+                  <div className="text-center">
+                    <Image
+                      src={`${process.env.REACT_APP_API}images/accessory/${product.images[0].filename}`}
+                      alt={product.name}
+                      roundedCircle
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  </div>
+                </Col>
+                <Col xs={12} md={4}>
+                  <h4 className="text-center">{product.name}</h4>
+                  <h4 className="text-center">{product.category.name}</h4>
+                </Col>
+                <Col xs={12} md={4} className="text-center">
+                  <Button
+                    className="mx-2"
+                    variant="danger"
+                    onClick={() => {
+                      removeProduct(product._id);
+                    }}
+                  >
+                    Excluir
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      navigate(`/accessory/edit/${product._id}`);
+                    }}
+                  >
+                    Editar
+                  </Button>
+                </Col>
+              </Row>
+            </Container>
           ))}
       </div>
     </section>
