@@ -8,6 +8,8 @@ import { isMobile } from "react-device-detect";
 function ProductDetails() {
   const [accessory, setAccessory] = useState({});
   const { id } = useParams();
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
     api.get(`/accessory/${id}`).then((response) => {
@@ -15,6 +17,25 @@ function ProductDetails() {
     });
   }, [id]);
   console.log(accessory);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (event.target.classList.contains(styles.image_popup)) {
+        setShowPopup(false);
+      }
+    };
+    if (showPopup) {
+      document.addEventListener("click", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showPopup]);
+
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setShowPopup(true);
+  };
 
   const message = `Olá, estou interessado em ${accessory.name}. Você poderia me dar mais informações?`;
 
@@ -45,6 +66,11 @@ function ProductDetails() {
                   src={`${process.env.REACT_APP_API}images/accessory/${image.filename}`}
                   alt={accessory.name}
                   key={index}
+                  onClick={() =>
+                    handleImageClick(
+                      `${process.env.REACT_APP_API}images/accessory/${image.filename}`
+                    )
+                  }
                 />
               ))}
             </div>
@@ -57,6 +83,16 @@ function ProductDetails() {
               R${accessory.price}
             </p>
             <button onClick={handleClick}>Tenho interesse!</button>
+            {showPopup && (
+              <div
+                className={`${styles.image_popup} ${
+                  showPopup ? styles.show : ""
+                }`}
+              >
+                <img src={selectedImage} alt={accessory.name} />
+                <button onClick={() => setShowPopup(false)}>Fechar</button>
+              </div>
+            )}
           </Row>
         </section>
       )}
