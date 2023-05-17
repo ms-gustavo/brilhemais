@@ -1,3 +1,4 @@
+import api from "../../utils/api";
 import { useContext, useState, useEffect } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
@@ -14,6 +15,12 @@ const NavigationBar = () => {
     const token = localStorage.getItem("token");
     setToken(token);
   }, [token]);
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    api.get("/categories").then((response) => {
+      setCategories(response.data.categories);
+    });
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -42,20 +49,21 @@ const NavigationBar = () => {
             id="basic-nav-dropdown"
             className="dropdown-menu-right"
           >
-            <NavDropdown.Item as={Link} to="/necklaces">
-              Colar
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/bracelets">
-              Pulseiras
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/earrings">
-              Brincos
-            </NavDropdown.Item>
+            {categories.map((category) => (
+              <NavDropdown.Item
+                key={category._id}
+                as={Link}
+                to={`/category/${category._id}`}
+              >
+                {category.name}
+              </NavDropdown.Item>
+            ))}
             <NavDropdown.Divider />
             <NavDropdown.Item as={Link} to="/allproducts">
               Ver todos os produtos
             </NavDropdown.Item>
           </NavDropdown>
+
           {decodedToken?.isAdmin && (
             <>
               <Nav.Link as={Link} to="/accessory/create">

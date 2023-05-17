@@ -1,7 +1,7 @@
 import api from "../../../utils/api";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import { Col, Row } from "react-bootstrap";
 import styles from "./AllProducts.module.css";
 
 function AllProducts() {
@@ -17,27 +17,27 @@ function AllProducts() {
   return (
     <section>
       <div className={styles.product_home_header}>
-        <h1>Todos os acessórios</h1>
+        <h1 className="text-center">Todos os acessórios</h1>
       </div>
-      <div className={styles.product_container}>
+      <Row className="justify-content-center">
         {products.length > 0 &&
           products.map((product) => (
-            <div key={product._id} className={styles.product_card}>
+            <Col key={product._id} xs={12} sm={6} md={4} lg={3}>
               <img
                 src={`${process.env.REACT_APP_API}/images/accessory/${product.images[0].filename}`}
                 alt={product.name}
-                className={styles.product_card_image}
+                className="img-fluid rounded-circle"
               />
-              <h3>{product.name}</h3>
-              <p>
-                <span className="bold">{product.description}</span>
+              <h3 className="text-center">{product.name}</h3>
+              <p className="text-center">
+                <span className="font-weight-bold">{product.description}</span>
               </p>
-              <p>
-                <span className="bold">R${product.price}</span>
+              <p className="text-center">
+                <span className="font-weight-bold">R${product.price}</span>
               </p>
-            </div>
+            </Col>
           ))}
-      </div>
+      </Row>
     </section>
   );
 }

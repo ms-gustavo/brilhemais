@@ -114,14 +114,17 @@ module.exports = class AccessoryController {
         return;
       }
 
-      // find accessories by categories
-      const accessories = await Accessory.find({ category: categoryId });
+      // find accessories by category
+      const accessories = await Accessory.find({
+        category: categoryId,
+      }).populate("category", "name");
       if (!accessories || accessories.length === 0) {
         return res
           .status(400)
           .json({ message: i18n.__("DONT_HAVE_ACCESSORIES") });
       }
-      return res.json({ accessories });
+
+      return res.json({ category: category.name, accessories });
     } catch (err) {
       console.log(err);
       return res
