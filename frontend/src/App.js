@@ -13,6 +13,7 @@ import AllProducts from "./components/pages/Products/AllProducts";
 import AddAccessory from "./components/pages/Products/AddProduct";
 import ManageProducts from "./components/pages/Products/ManageProducts";
 import CategoryPage from "./components/pages/Products/CategoryPage";
+import ProductDetails from "./components/pages/Products/ProductDetails";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/category/:categoryId" element={<CategoryPage />} />
+            <Route path="/accessory/:id" element={<ProductDetails />} />
             <Route path="/accessory/create" element={<AddAccessory />} />
             <Route path="/accessory/all" element={<ManageProducts />} />
             <Route path="/allproducts" element={<AllProducts />} />

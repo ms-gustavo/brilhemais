@@ -65,9 +65,12 @@ const CategoryPage = () => {
                   </li>
                 </ul>
                 <div className="card-body">
-                  <a href="#" className="card-link">
+                  <Link
+                    to={`../accessory/${accessory._id}`}
+                    className="card-link"
+                  >
                     Detalhes
-                  </a>
+                  </Link>
                   {/* <Link
                     className="card-link"
                     to={`/category/${product.category._id}`}

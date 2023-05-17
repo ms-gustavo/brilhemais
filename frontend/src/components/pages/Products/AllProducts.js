@@ -1,7 +1,7 @@
 import api from "../../../utils/api";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import styles from "./AllProducts.module.css";
 
 function AllProducts() {
@@ -45,9 +45,9 @@ function AllProducts() {
                 </li>
               </ul>
               <div className="card-body">
-                <a href="#" className="card-link">
+                <Link to={`../accessory/${product._id}`} className="card-link">
                   Detalhes
-                </a>
+                </Link>
                 <Link
                   className="card-link"
                   to={`/category/${product.category._id}`}
