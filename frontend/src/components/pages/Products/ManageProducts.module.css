@@ -59,11 +59,10 @@
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
-  padding: 7px 12px;
+  padding: 7px;
   border-radius: 5px;
   border: 2px solid #16479d;
   font-size: 12px;
-  margin-left: 1em;
 }
 .actions a:hover,
 .actions button:hover {
