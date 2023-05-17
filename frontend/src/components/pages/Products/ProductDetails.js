@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import styles from "./ProductDetails.module.css";
+import { isMobile } from "react-device-detect";
 
 function ProductDetails() {
   const [accessory, setAccessory] = useState({});
@@ -19,7 +20,14 @@ function ProductDetails() {
 
   const handleClick = () => {
     const encodedMessage = encodeURIComponent(message);
-    const url = `https://api.whatsapp.com/send?phone=+5571991108690&text=${encodedMessage}`;
+    let url = "";
+
+    if (isMobile) {
+      url = `whatsapp://send?phone=+5571991108690&text=${encodedMessage}`;
+    } else {
+      url = `https://web.whatsapp.com/send?phone=+5571991108690&text=${encodedMessage}`;
+    }
+
     window.open(url, "_blank");
   };
 
