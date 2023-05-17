@@ -15,7 +15,7 @@ router.get("/", AccessoryController.getAll);
 router.get("/:id", AccessoryController.getAccessoryById);
 router.delete("/:id", AccessoryController.deleteAccessoryById);
 router.patch(
-  "/:id",
+  "/edit/:id",
   verifyToken,
   imageUpload.array("images"),
   AccessoryController.updateAccessory
