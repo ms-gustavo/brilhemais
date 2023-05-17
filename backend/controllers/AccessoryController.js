@@ -241,7 +241,7 @@ module.exports = class AccessoryController {
     if (images.length > 0) {
       updatedData.images = [];
       images.map((image) => {
-        updatedData.images.push(image.filename);
+        updatedData.images.push(image);
       });
     }
     await Accessory.findByIdAndUpdate(id, updatedData);
