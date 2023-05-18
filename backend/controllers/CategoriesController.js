@@ -12,10 +12,7 @@ module.exports = class CategoriesController {
   static async create(req, res) {
     //check if user is admin
     const token = getToken(req);
-    console.log("create categorie", token);
     const user = await getUserByToken(token);
-    console.log("user", user);
-    console.log("user is admin", user.isAdmin);
     if (!user.isAdmin) {
       res.status(422).json({
         message: i18n.__("UNABLE_TO_PROCESS"),
