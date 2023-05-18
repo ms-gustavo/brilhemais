@@ -9,7 +9,6 @@ import useDecodedToken from "../../../utils/useDecodedToken";
 
 function AddAccessory() {
   const [token] = useState(localStorage.getItem("token") || null);
-  console.log(token);
   const [decodedToken] = useDecodedToken();
   const { setFlashMessage } = useFlashMessage();
   const navigate = useNavigate();

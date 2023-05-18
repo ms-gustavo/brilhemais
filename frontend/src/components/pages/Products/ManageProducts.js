@@ -24,7 +24,6 @@ function ManageProducts() {
       setProducts(response.data.accessories);
     });
   }, []);
-  console.log(products);
 
   async function removeProduct(id) {
     let msgType = "success";

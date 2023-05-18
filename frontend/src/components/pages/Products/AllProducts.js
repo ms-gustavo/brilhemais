@@ -12,8 +12,6 @@ function AllProducts() {
       setProducts(response.data.accessories);
     });
   }, []);
-  console.log(products);
-
   return (
     <section>
       <div className={`${styles.product_home_header} text-center`}>

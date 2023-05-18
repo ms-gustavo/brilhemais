@@ -16,7 +16,6 @@ function ProductDetails() {
       setAccessory(response?.data.accessory);
     });
   }, [id]);
-  console.log(accessory);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

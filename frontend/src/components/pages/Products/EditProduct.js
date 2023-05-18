@@ -12,7 +12,6 @@ function EditProduct() {
   const [accessory, setAccessory] = useState({});
   const [token] = useState(localStorage.getItem("token") || null);
   const navigate = useNavigate();
-  console.log(token);
   const [decodedToken] = useDecodedToken();
   const { setFlashMessage } = useFlashMessage();
   const { id } = useParams();
@@ -27,7 +26,6 @@ function EditProduct() {
       setAccessory(response?.data.accessory);
     });
   }, [id]);
-  console.log("edit product", accessory);
 
   async function updateAccessory(accessory) {
     let msgType = "success";
@@ -41,8 +39,6 @@ function EditProduct() {
       } else {
         formData.append(key, accessory[key]);
       }
-      console.log("formdata", formData);
-      console.log("formdata id", accessory._id);
     });
     const data = await api
       .patch(`/accessory/edit/${accessory._id}`, formData, {

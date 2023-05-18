@@ -14,7 +14,6 @@ function AccessoryForm({ handleSubmit, accessoryData, btnText }) {
       setCategories(response.data.categories);
     });
   }, []);
-  console.log(categories);
 
   function onFileChange(e) {
     setPreview(Array.from(e.target.files));

@@ -2,7 +2,7 @@ import api from "../../../utils/api";
 import { useState, useEffect, React } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./AllProducts.module.css";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const CategoryPage = () => {
@@ -20,7 +20,6 @@ const CategoryPage = () => {
         console.log(err.response.data.message);
       });
   }, [categoryId]);
-  console.log("categoria unica", category);
 
   return (
     <section>
