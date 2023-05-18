@@ -4,7 +4,7 @@ import formStyles from "./Form.module.css";
 import styles from "./AccessoryForm.module.css";
 import Input from "./Input";
 
-function CarrousselForm({ handleSubmit, carrousselData, btnText }) {
+function CarrousselForm({ handleSubmit, btnText }) {
   const [carroussel, setCarroussel] = useState({});
   const [preview, setPreview] = useState([]);
 
@@ -42,7 +42,7 @@ function CarrousselForm({ handleSubmit, carrousselData, btnText }) {
               ))}
         </div>
         <Input
-          text="Imagen do Carrossel"
+          text="Imagem do Carrossel"
           type="file"
           name="images"
           handleOnChange={onFileChange}

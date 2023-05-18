@@ -17,6 +17,8 @@ import ProductDetails from "./components/pages/Products/ProductDetails";
 import EditProduct from "./components/pages/Products/EditProduct";
 import ManageCarroussel from "./components/pages/Products/ManageCarroussel";
 import CreateCarroussel from "./components/pages/Products/CreateCarroussel";
+import CreateCategory from "./components/pages/Products/CreateCategory";
+import ManageCategory from "./components/pages/Products/ManageCategory";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
             <Route path="/category/:categoryId" element={<CategoryPage />} />
             <Route path="/accessory/:id" element={<ProductDetails />} />
             <Route path="/accessory/create" element={<AddAccessory />} />
+            <Route path="/category/create" element={<CreateCategory />} />
+            <Route path="/category/manage" element={<ManageCategory />} />
             <Route path="/accessory/all" element={<ManageProducts />} />
             <Route path="/carroussel/all" element={<ManageCarroussel />} />
             <Route path="/carroussel/create" element={<CreateCarroussel />} />

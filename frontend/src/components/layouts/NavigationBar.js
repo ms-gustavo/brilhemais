@@ -88,7 +88,24 @@ const NavigationBar = () => {
                   Cadastrar Produtos
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/accessory/all">
-                  Listar todos os Produtos
+                  Gerenciar Produtos
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown
+                title={<span className="text-light">Gerenciar Categorias</span>}
+                id="basic-nav-dropdown"
+                className="dropdown-menu-right mx-3"
+                style={{
+                  "--bs-nav-link-color": "white",
+                  "--bs-nav-link-hover-color": "white",
+                  "--bs-navbar-active-color": "white",
+                }}
+              >
+                <NavDropdown.Item as={Link} to="/category/create">
+                  Cadastrar Categorias
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/category/manage">
+                  Gerenciar Categorias
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown
