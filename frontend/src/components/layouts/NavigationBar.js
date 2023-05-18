@@ -28,7 +28,7 @@ const NavigationBar = () => {
 
   return (
     <Navbar
-      bg="light"
+      bg="dark"
       expand={decodedToken?.isAdmin ? "lg" : "md"}
       className="d-flex"
     >
@@ -36,8 +36,8 @@ const NavigationBar = () => {
         <div className="d-flex align-items-center">
           <img
             src={Logo}
-            width="50"
-            height="50"
+            width="100"
+            height="100"
             className="d-inline-block align-top"
             alt="Logo"
           />
@@ -49,9 +49,14 @@ const NavigationBar = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <NavDropdown
-            title="Produtos"
+            title={<span className="text-light">Produtos</span>}
             id="basic-nav-dropdown"
-            className="dropdown-menu-right"
+            className="dropdown-menu-right mx-3"
+            style={{
+              "--bs-nav-link-color": "white",
+              "--bs-nav-link-hover-color": "white",
+              "--bs-navbar-active-color": "white",
+            }}
           >
             {categories.map((category) => (
               <NavDropdown.Item
@@ -70,31 +75,49 @@ const NavigationBar = () => {
 
           {decodedToken?.isAdmin && (
             <>
-              <Nav.Link as={Link} to="/accessory/create">
+              <Nav.Link
+                as={Link}
+                to="/accessory/create"
+                className="text-light mx-3"
+              >
                 Cadastrar Produto
               </Nav.Link>
-              <Nav.Link as={Link} to="/accessory/all">
+              <Nav.Link
+                as={Link}
+                to="/accessory/all"
+                className="text-light mx-3"
+              >
                 Listar todos os Produtos
               </Nav.Link>
-              <Nav.Link as={Link} to="/carroussel/create">
+              <Nav.Link
+                as={Link}
+                to="/carroussel/create"
+                className="text-light mx-3"
+              >
                 Inserir Carrossel
               </Nav.Link>
-              <Nav.Link as={Link} to="/carroussel/all">
+              <Nav.Link
+                as={Link}
+                to="/carroussel/all"
+                className="text-light mx-3"
+              >
                 Ver Carrossel
               </Nav.Link>
             </>
           )}
           {!authenticated ? (
             <>
-              <Nav.Link as={Link} to="/login">
+              <Nav.Link as={Link} to="/login" className="text-light  mx-3">
                 Entrar
               </Nav.Link>
-              <Nav.Link as={Link} to="/register">
+              <Nav.Link as={Link} to="/register" className="text-light mx-3">
                 Registrar
               </Nav.Link>
             </>
           ) : (
-            <Nav.Link onClick={handleLogout}>Sair</Nav.Link>
+            <Nav.Link onClick={handleLogout} className="text-light mx-3">
+              Sair
+            </Nav.Link>
           )}
         </Nav>
       </Navbar.Collapse>
