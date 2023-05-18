@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="row">
           <div className="col-md-6">
             <h4 className="mb-3 footer-text">Brilhe Mais</h4>
-            <p>Sua loja de acessórios femininos</p>
+            <p>Realçando o brilho que há em você.</p>
           </div>
           <div className="col-md-6 text-md-end">
             <a

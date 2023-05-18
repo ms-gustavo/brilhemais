@@ -32,12 +32,14 @@ function Home() {
   const images = carroussel.map((carroussel) => ({
     original: `${process.env.REACT_APP_API}/images/carroussel/${carroussel.images[0].filename}`,
     originalAlt: carroussel.name,
+    thumbnail: `${process.env.REACT_APP_API}/images/carroussel/${carroussel.images[0].filename}`,
+    thumbnailAlt: carroussel.name,
   }));
 
   const galleryOptions = {
     showFullscreenButton: false,
     showPlayButton: false,
-    // startIndex: currentIndex,
+    startIndex: currentIndex,
   };
 
   const galleryStyles = {
@@ -49,11 +51,7 @@ function Home() {
   return (
     <div style={galleryStyles}>
       {carroussel.length > 0 && (
-        <ImageGallery
-          items={images}
-          {...galleryOptions}
-          style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.4)" }}
-        />
+        <ImageGallery items={images} {...galleryOptions} />
       )}
     </div>
   );

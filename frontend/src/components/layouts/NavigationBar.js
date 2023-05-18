@@ -36,8 +36,8 @@ const NavigationBar = () => {
         <div className="d-flex align-items-center">
           <img
             src={Logo}
-            width="100"
-            height="100"
+            width="85"
+            height="85"
             className="d-inline-block align-top"
             alt="Logo"
           />

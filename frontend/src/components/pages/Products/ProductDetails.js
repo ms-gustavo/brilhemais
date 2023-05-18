@@ -43,9 +43,9 @@ function ProductDetails() {
     let url = "";
 
     if (isMobile) {
-      url = `whatsapp://send?phone=+5571991108690&text=${encodedMessage}`;
+      url = `whatsapp://send?phone=+5571984024153&text=${encodedMessage}`;
     } else {
-      url = `https://web.whatsapp.com/send?phone=+5571991108690&text=${encodedMessage}`;
+      url = `https://web.whatsapp.com/send?phone=+5571984024153&text=${encodedMessage}`;
     }
 
     window.open(url, "_blank");
