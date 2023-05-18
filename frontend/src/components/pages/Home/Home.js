@@ -49,7 +49,11 @@ function Home() {
   return (
     <div style={galleryStyles}>
       {carroussel.length > 0 && (
-        <ImageGallery items={images} {...galleryOptions} />
+        <ImageGallery
+          items={images}
+          {...galleryOptions}
+          style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.4)" }}
+        />
       )}
     </div>
   );

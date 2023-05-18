@@ -75,34 +75,40 @@ const NavigationBar = () => {
 
           {decodedToken?.isAdmin && (
             <>
-              <Nav.Link
-                as={Link}
-                to="/accessory/create"
-                className="text-light mx-3"
+              <NavDropdown
+                title={<span className="text-light">Gerenciar Produtos</span>}
+                id="basic-nav-dropdown"
+                className="dropdown-menu-right mx-3"
+                style={{
+                  "--bs-nav-link-color": "white",
+                  "--bs-nav-link-hover-color": "white",
+                  "--bs-navbar-active-color": "white",
+                }}
               >
-                Cadastrar Produto
-              </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to="/accessory/all"
-                className="text-light mx-3"
+                <NavDropdown.Item as={Link} to="/accessory/create">
+                  Cadastrar Produtos
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/accessory/all">
+                  Listar todos os Produtos
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown
+                title={<span className="text-light">Gerenciar Carrossel</span>}
+                id="basic-nav-dropdown"
+                className="dropdown-menu-right mx-3"
+                style={{
+                  "--bs-nav-link-color": "white",
+                  "--bs-nav-link-hover-color": "white",
+                  "--bs-navbar-active-color": "white",
+                }}
               >
-                Listar todos os Produtos
-              </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to="/carroussel/create"
-                className="text-light mx-3"
-              >
-                Inserir Carrossel
-              </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to="/carroussel/all"
-                className="text-light mx-3"
-              >
-                Ver Carrossel
-              </Nav.Link>
+                <NavDropdown.Item as={Link} to="/carroussel/create">
+                  Cadastrar Carrossel
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/carroussel/all">
+                  Gerenciar Carrossel
+                </NavDropdown.Item>
+              </NavDropdown>
             </>
           )}
           {!authenticated ? (
