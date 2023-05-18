@@ -27,7 +27,11 @@ const NavigationBar = () => {
   };
 
   return (
-    <Navbar bg="light" expand="md" className="d-flex">
+    <Navbar
+      bg="light"
+      expand={decodedToken.isAdmin ? "lg" : "md"}
+      className="d-flex"
+    >
       <Navbar.Brand as={Link} to="/">
         <div className="d-flex align-items-center">
           <img
