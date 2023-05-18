@@ -1,5 +1,4 @@
 import React from "react";
-import { AiFillStar } from "react-icons/ai";
 
 const Footer = () => {
   return (
@@ -7,10 +6,7 @@ const Footer = () => {
       <div className="container py-4">
         <div className="row">
           <div className="col-md-6">
-            <h4 className="mb-3 footer-text">
-              Brilhe Mais{" "}
-              <AiFillStar color="yellow" size={16} className="ml-2" />
-            </h4>
+            <h4 className="mb-3 footer-text">Brilhe Mais</h4>
             <p>Sua loja de acessórios femininos</p>
           </div>
           <div className="col-md-6 text-md-end">

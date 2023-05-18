@@ -1,6 +1,6 @@
 import api from "../../utils/api";
 import { useContext, useState, useEffect } from "react";
-import { AiFillStar } from "react-icons/ai";
+
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import Logo from "../../assets/img/Logo.png";
 import { Context } from "../../context/UserContext";
@@ -41,8 +41,7 @@ const NavigationBar = () => {
             className="d-inline-block align-top"
             alt="Logo"
           />
-          <span className="ml-2 site-title">Brilhe Mais </span>
-          <AiFillStar color="yellow" size={25} className="ml-3" />
+          <span className="ml-2 site-title">Brilhe Mais</span>
         </div>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
