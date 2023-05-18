@@ -21,10 +21,9 @@ module.exports = class CategoriesController {
     }
 
     const name = req.body.name;
-    const image = req.file ? req.file.filename : undefined;
 
     // validations
-    const validationError = validateCreateCategory(name, image);
+    const validationError = validateCreateCategory(name);
     if (validationError) {
       return res.status(422).json({
         message: validationError,
@@ -42,7 +41,6 @@ module.exports = class CategoriesController {
 
     const category = new Category({
       name,
-      image,
     });
 
     try {
