@@ -5,14 +5,14 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const [accessory, setAccessory] = useState([]);
+  const [carroussel, setCarroussel] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     api
-      .get("/accessory")
+      .get("/carroussel")
       .then((response) => {
-        setAccessory(response.data.accessories);
+        setCarroussel(response.data.carroussel);
       })
       .catch((error) => {
         console.log(error);
@@ -21,17 +21,17 @@ function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % accessory.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % carroussel.length);
     }, 3000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [accessory.length]);
+  }, [carroussel.length]);
 
-  const images = accessory.slice(0, 4).map((accessory) => ({
-    original: `${process.env.REACT_APP_API}/images/accessory/${accessory.images[0].filename}`,
-    originalAlt: accessory.name,
+  const images = carroussel.map((carroussel) => ({
+    original: `${process.env.REACT_APP_API}/images/carroussel/${carroussel.images[0].filename}`,
+    originalAlt: carroussel.name,
   }));
 
   const galleryOptions = {
@@ -47,7 +47,7 @@ function Home() {
 
   return (
     <div style={galleryStyles}>
-      {accessory.length > 0 && (
+      {carroussel.length > 0 && (
         <ImageGallery items={images} {...galleryOptions} />
       )}
     </div>

@@ -15,6 +15,8 @@ import ManageProducts from "./components/pages/Products/ManageProducts";
 import CategoryPage from "./components/pages/Products/CategoryPage";
 import ProductDetails from "./components/pages/Products/ProductDetails";
 import EditProduct from "./components/pages/Products/EditProduct";
+import ManageCarroussel from "./components/pages/Products/ManageCarroussel";
+import CreateCarroussel from "./components/pages/Products/CreateCarroussel";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             <Route path="/accessory/:id" element={<ProductDetails />} />
             <Route path="/accessory/create" element={<AddAccessory />} />
             <Route path="/accessory/all" element={<ManageProducts />} />
+            <Route path="/carroussel/all" element={<ManageCarroussel />} />
+            <Route path="/carroussel/create" element={<CreateCarroussel />} />
             <Route path="/allproducts" element={<AllProducts />} />
             <Route path="/" exact element={<Home />} />
           </Routes>

@@ -72,6 +72,12 @@ const NavigationBar = () => {
               <Nav.Link as={Link} to="/accessory/all">
                 Listar todos os Produtos
               </Nav.Link>
+              <Nav.Link as={Link} to="/carroussel/create">
+                Inserir Carrossel
+              </Nav.Link>
+              <Nav.Link as={Link} to="/carroussel/all">
+                Ver Carrossel
+              </Nav.Link>
             </>
           )}
           {!authenticated ? (
