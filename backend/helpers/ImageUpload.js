@@ -12,6 +12,8 @@ const imageStorage = multer.diskStorage({
       folder = "categories";
     } else if (req.baseUrl.includes("accessory")) {
       folder = "accessory";
+    } else if (req.baseUrl.includes("carroussel")) {
+      folder = "carroussel";
     }
     cb(null, `public/images/${folder}`);
   },
