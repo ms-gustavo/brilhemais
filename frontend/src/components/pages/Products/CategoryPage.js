@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import styles from "./AllProducts.module.css";
 import { Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import style from "./CategoryPage.module.css";
 
 const CategoryPage = () => {
   const { categoryId } = useParams();
@@ -28,11 +29,11 @@ const CategoryPage = () => {
       </div>
       <Row className={styles.product_container}>
         {category === null ? (
-          <div className="text-center">
+          <div className="text-center ">
             <h1>Nenhum acessório encontrado para essa categoria.</h1>
-            <p>
+            <button className={style.button_category}>
               <Link to="/allproducts">Ver todos os acessórios</Link>
-            </p>
+            </button>
           </div>
         ) : (
           category?.accessories?.length > 0 &&

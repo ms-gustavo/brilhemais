@@ -45,8 +45,8 @@
 
 .product_card a {
   text-decoration: none;
-  background-color: #ffd400;
-  color: #16479d;
+  background-color: #fce89a;
+  color: #212529;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
@@ -55,8 +55,8 @@
 }
 
 .product_card a:hover {
-  background-color: #e7c30d;
-  color: #fff;
+  background-color: #212529;
+  color: #fce89a;
 }
 
 .card-img-top img {
