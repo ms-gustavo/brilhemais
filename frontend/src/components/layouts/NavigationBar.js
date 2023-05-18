@@ -29,7 +29,7 @@ const NavigationBar = () => {
   return (
     <Navbar
       bg="light"
-      expand={decodedToken.isAdmin ? "lg" : "md"}
+      expand={decodedToken?.isAdmin ? "lg" : "md"}
       className="d-flex"
     >
       <Navbar.Brand as={Link} to="/">

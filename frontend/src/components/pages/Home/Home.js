@@ -43,6 +43,7 @@ function Home() {
   const galleryStyles = {
     margin: "auto",
     width: "80vw",
+    height: "auto",
   };
 
   return (
