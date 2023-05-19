@@ -86,14 +86,8 @@ function ProductDetails() {
                 }}
               />
             </div>
-            <p>
-              <span className="bold">Descrição:</span>
-              {accessory.description}
-            </p>
-            <p>
-              <span className="bold">Preço:</span>
-              R${accessory.price}
-            </p>
+            <h2>{accessory.description}</h2>
+            <h3>R${accessory.price}</h3>
             <button
               style={{
                 textDecoration: "none",
