@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import useDecodedToken from "../../../utils/useDecodedToken";
 import { useState, useEffect } from "react";
 import useFlashMessage from "../../../hooks/useFlashMessage";
-import { Container, Row, Col, Button, Image } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 function ManageCategory() {
   const [token] = useState(localStorage.getItem("token") || null);
@@ -23,7 +23,6 @@ function ManageCategory() {
       setCategory(response.data.categories);
     });
   }, []);
-  console.log(category);
 
   async function removeCategory(id) {
     let msgType = "success";

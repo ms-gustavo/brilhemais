@@ -4,14 +4,14 @@ import { IoLogoInstagram } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-light">
+    <footer className="text-light" style={{ backgroundColor: "#756F4B" }}>
       <div className="container py-4">
         <div className="row">
           <div className="col-md-6">
             <h4 className="footer-text">Realçando o brilho que há em você</h4>
             <Row>
               <Col xs={6}>
-                <ul className="list-unstyled">
+                <ul className="list-unstyled" style={{ color: "#F6E99E" }}>
                   <li>&#9733;Pratas 925</li>
                   <li>&#9733;Semi Jóias</li>
                   <li>&#9733;Folheados</li>

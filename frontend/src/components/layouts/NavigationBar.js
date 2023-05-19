@@ -28,7 +28,7 @@ const NavigationBar = () => {
 
   return (
     <Navbar
-      bg="dark"
+      style={{ backgroundColor: "#756F4B" }}
       expand={decodedToken?.isAdmin ? "lg" : "md"}
       className="d-flex"
     >
@@ -46,19 +46,19 @@ const NavigationBar = () => {
       </Navbar.Brand>
       <Navbar.Toggle
         aria-controls="basic-navbar-nav"
-        className="bg-light my-1"
-        style={{ marginRight: "3px" }}
+        className="my-1"
+        style={{ backgroundColor: "#F6E99E", marginRight: "3px" }}
       />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <NavDropdown
-            title={<span className="text-light">Produtos</span>}
+            title={<span style={{ color: "#F6E99E" }}>Produtos</span>}
             id="basic-nav-dropdown"
             className="dropdown-menu-right mx-3"
             style={{
-              "--bs-nav-link-color": "white",
-              "--bs-nav-link-hover-color": "white",
-              "--bs-navbar-active-color": "white",
+              "--bs-nav-link-color": "#F6E99E",
+              "--bs-nav-link-hover-color": "#F6E99E",
+              "--bs-navbar-active-color": "#F6E99E",
             }}
           >
             {categories.map((category) => (
@@ -79,13 +79,13 @@ const NavigationBar = () => {
           {decodedToken?.isAdmin && (
             <>
               <NavDropdown
-                title={<span className="text-light">Gerenciar Produtos</span>}
+                title={<span>Gerenciar Produtos</span>}
                 id="basic-nav-dropdown"
                 className="dropdown-menu-right mx-3"
                 style={{
-                  "--bs-nav-link-color": "white",
-                  "--bs-nav-link-hover-color": "white",
-                  "--bs-navbar-active-color": "white",
+                  "--bs-nav-link-color": "#F6E99E",
+                  "--bs-nav-link-hover-color": "#F6E99E",
+                  "--bs-navbar-active-color": "#F6E99E",
                 }}
               >
                 <NavDropdown.Item as={Link} to="/accessory/create">
@@ -96,13 +96,13 @@ const NavigationBar = () => {
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown
-                title={<span className="text-light">Gerenciar Categorias</span>}
+                title={<span>Gerenciar Categorias</span>}
                 id="basic-nav-dropdown"
                 className="dropdown-menu-right mx-3"
                 style={{
-                  "--bs-nav-link-color": "white",
-                  "--bs-nav-link-hover-color": "white",
-                  "--bs-navbar-active-color": "white",
+                  "--bs-nav-link-color": "#F6E99E",
+                  "--bs-nav-link-hover-color": "#F6E99E",
+                  "--bs-navbar-active-color": "#F6E99E",
                 }}
               >
                 <NavDropdown.Item as={Link} to="/category/create">
@@ -113,13 +113,13 @@ const NavigationBar = () => {
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown
-                title={<span className="text-light">Gerenciar Carrossel</span>}
+                title={<span>Gerenciar Carrossel</span>}
                 id="basic-nav-dropdown"
                 className="dropdown-menu-right mx-3"
                 style={{
-                  "--bs-nav-link-color": "white",
-                  "--bs-nav-link-hover-color": "white",
-                  "--bs-navbar-active-color": "white",
+                  "--bs-nav-link-color": "#F6E99E",
+                  "--bs-nav-link-hover-color": "#F6E99E",
+                  "--bs-navbar-active-color": "#F6E99E",
                 }}
               >
                 <NavDropdown.Item as={Link} to="/carroussel/create">
@@ -133,15 +133,29 @@ const NavigationBar = () => {
           )}
           {!authenticated ? (
             <>
-              <Nav.Link as={Link} to="/login" className="text-light  mx-3">
+              <Nav.Link
+                as={Link}
+                to="/login"
+                className="  mx-3"
+                style={{ color: "#F6E99E" }}
+              >
                 Entrar
               </Nav.Link>
-              <Nav.Link as={Link} to="/register" className="text-light mx-3">
+              <Nav.Link
+                as={Link}
+                to="/register"
+                className=" mx-3"
+                style={{ color: "#F6E99E" }}
+              >
                 Registrar
               </Nav.Link>
             </>
           ) : (
-            <Nav.Link onClick={handleLogout} className="text-light mx-3">
+            <Nav.Link
+              onClick={handleLogout}
+              className=" mx-3"
+              style={{ color: "#F6E99E" }}
+            >
               Sair
             </Nav.Link>
           )}

@@ -22,7 +22,11 @@ function AllProducts() {
           products.map((product, index) => (
             <div
               className={`card ${styles.product_card}`}
-              style={{ width: "18rem", margin: "10px" }}
+              style={{
+                width: "18rem",
+                margin: "10px",
+                "--bs-card-bg": "#756F4B",
+              }}
               key={index}
             >
               <img
@@ -31,15 +35,29 @@ function AllProducts() {
                 alt={product.name}
               />
               <div className="card-body">
-                <h5 className="card-title">{product.name}</h5>
+                <h5 className="card-title">
+                  <span>{product.name}</span>
+                </h5>
                 <p className="card-text font-weight-bold">
-                  {product.description}
+                  <span>{product.description}</span>
                 </p>
               </div>
               <ul className="list-group list-group-flush">
-                <li className="list-group-item">R${product.price}</li>
-                <li className="list-group-item">
-                  Categoria: {product.category.name}
+                <li
+                  style={{
+                    "--bs-list-group-bg": "#756F4B",
+                  }}
+                  className="list-group-item"
+                >
+                  <span>R${product.price}</span>
+                </li>
+                <li
+                  style={{
+                    "--bs-list-group-bg": "#756F4B",
+                  }}
+                  className="list-group-item"
+                >
+                  <span>Categoria: {product.category.name}</span>
                 </li>
               </ul>
               <div className="card-body">

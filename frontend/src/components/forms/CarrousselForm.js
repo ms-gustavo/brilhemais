@@ -1,7 +1,5 @@
-import api from "../../utils/api";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import formStyles from "./Form.module.css";
-import styles from "./AccessoryForm.module.css";
 import Input from "./Input";
 
 function CarrousselForm({ handleSubmit, btnText }) {

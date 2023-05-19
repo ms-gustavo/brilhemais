@@ -2,7 +2,6 @@ import api from "../../../utils/api";
 import { useState, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { Link } from "react-router-dom";
 
 function Home() {
   const [carroussel, setCarroussel] = useState([]);

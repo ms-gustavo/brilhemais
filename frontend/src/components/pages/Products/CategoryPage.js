@@ -18,7 +18,6 @@ const CategoryPage = () => {
       })
       .catch((err) => {
         setCategory(null);
-        console.log(err.response.data.message);
       });
   }, [categoryId]);
 
@@ -38,30 +37,47 @@ const CategoryPage = () => {
         ) : (
           category?.accessories?.length > 0 &&
           category.accessories.map((accessory, index) => {
-            const { _id, name, images } = accessory;
+            const { name, images } = accessory;
             const firstImage = images.length > 0 ? images[0].filename : null;
-
             return (
               <div
                 className={`card ${styles.product_card}`}
-                style={{ width: "18rem", margin: "10px" }}
+                style={{
+                  width: "18rem",
+                  margin: "10px",
+                  "--bs-card-bg": "#756F4B",
+                }}
                 key={index}
               >
                 <img
                   src={`${process.env.REACT_APP_API}/images/accessory/${firstImage}`}
                   alt={name}
-                  className={`${styles.product_card_image} rounded-circle`}
+                  className={`${styles.product_card_image} `}
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{name}</h5>
+                  <h5 className="card-title">
+                    <span>{name}</span>
+                  </h5>
                   <p className="card-text font-weight-bold">
-                    {accessory.description}
+                    <span>{accessory.description}</span>
                   </p>
                 </div>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item">R${accessory.price}</li>
-                  <li className="list-group-item">
-                    Categoria: {accessory.category.name}
+                  <li
+                    style={{
+                      "--bs-list-group-bg": "#756F4B",
+                    }}
+                    className="list-group-item"
+                  >
+                    <span>R${accessory.price}</span>
+                  </li>
+                  <li
+                    style={{
+                      "--bs-list-group-bg": "#756F4B",
+                    }}
+                    className="list-group-item"
+                  >
+                    <span>Categoria: {accessory.category.name}</span>
                   </li>
                 </ul>
                 <div className="card-body">
