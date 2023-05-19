@@ -81,14 +81,16 @@ function AccessoryForm({ handleSubmit, accessoryData, btnText }) {
           value={accessory.price || ""}
         />
 
-        <Input
-          text="Descrição do Acessório"
-          type="text"
-          name="description"
-          placeholder="Digite a descrição do acessório"
-          handleOnChange={handleChange}
-          value={accessory.description || ""}
-        />
+        <label htmlFor="description">
+          Descrição do Acessório
+          <textarea
+            cols="30"
+            rows="3"
+            name="description"
+            onChange={handleChange}
+            value={accessory.description || ""}
+          />
+        </label>
         {accessoryData === undefined && (
           <div className={styles.form_control}>
             <select onChange={handleCategory} value={accessory.category || ""}>

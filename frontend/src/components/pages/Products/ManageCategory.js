@@ -55,17 +55,17 @@ function ManageCategory() {
       <div>
         {category.length > 0 &&
           category.map((category, index) => (
-            <Container key={index}>
+            <Container key={index} className="d-flex justify-content-around">
               <Row
                 key={category._id}
                 className="align-items-center border-bottom pb-3"
               >
-                <Col xs={12} md={4}>
-                  <h4 className="text-center">{category.name}</h4>
+                <Col xs={12} md={6} className="text-center">
+                  <h4>{category.name}</h4>
                 </Col>
-                <Col xs={12} md={4} className="text-center">
+                <Col xs={12} md={6} className="text-center">
                   <Button
-                    className="mx-2"
+                    className="mt-3"
                     variant="danger"
                     onClick={() => {
                       removeCategory(category._id);

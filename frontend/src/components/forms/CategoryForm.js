@@ -20,7 +20,7 @@ function CategoryForm({ handleSubmit, btnText }) {
           text="Nome da Categoria"
           type="text"
           name="name"
-          placeholder="Digite o nome da categoria"
+          placeholder="Não podem ter categorias iguais"
           handleOnChange={handleChange}
           value={category.name || ""}
         />

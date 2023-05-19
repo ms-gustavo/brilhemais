@@ -52,7 +52,7 @@ function CarrousselForm({ handleSubmit, btnText }) {
           text="Nome do Carrossel"
           type="text"
           name="name"
-          placeholder="Digite o nome do carrossel"
+          placeholder="Não podem ter nomes iguais"
           handleOnChange={handleChange}
           value={carroussel.name || ""}
         />

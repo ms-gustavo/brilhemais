@@ -50,7 +50,7 @@ function AddAccessory() {
 
     setFlashMessage(data?.message, msgType);
     if (msgType !== "error") {
-      navigate("/");
+      navigate("/accessory/create");
     }
   }
 

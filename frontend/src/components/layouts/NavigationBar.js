@@ -44,7 +44,11 @@ const NavigationBar = () => {
           <span className="ml-2 site-title">Brilhe Mais</span>
         </div>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        className="bg-light my-1"
+        style={{ marginRight: "3px" }}
+      />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <NavDropdown

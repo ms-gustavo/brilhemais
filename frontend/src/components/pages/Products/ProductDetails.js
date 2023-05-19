@@ -1,9 +1,10 @@
 import api from "../../../utils/api";
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import styles from "./ProductDetails.module.css";
 import { isMobile } from "react-device-detect";
+import ImageGallery from "react-image-gallery";
 
 function ProductDetails() {
   const [accessory, setAccessory] = useState({});
@@ -16,6 +17,7 @@ function ProductDetails() {
       setAccessory(response?.data.accessory);
     });
   }, [id]);
+  console.log(accessory);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -51,6 +53,22 @@ function ProductDetails() {
     window.open(url, "_blank");
   };
 
+  const images = accessory?.images?.map((accessories) => ({
+    original: `${process.env.REACT_APP_API}images/accessory/${accessories.filename}`,
+    originalAlt: accessories.name,
+    thumbnail: `${process.env.REACT_APP_API}images/accessory/${accessories.filename}`,
+    thumbnailAlt: accessories.name,
+  }));
+  const galleryOptions = {
+    showFullscreenButton: false,
+    showPlayButton: false,
+  };
+  const galleryStyles = {
+    margin: "auto",
+    width: "80vw",
+    height: "auto",
+  };
+
   return (
     <>
       {accessory.name && (
@@ -59,19 +77,15 @@ function ProductDetails() {
             <h1>{accessory.name}</h1>
           </div>
           <Row className="justify-content-center">
-            <div className={styles.product_images}>
-              {accessory.images.map((image, index) => (
-                <img
-                  src={`${process.env.REACT_APP_API}images/accessory/${image.filename}`}
-                  alt={accessory.name}
-                  key={index}
-                  onClick={() =>
-                    handleImageClick(
-                      `${process.env.REACT_APP_API}images/accessory/${image.filename}`
-                    )
-                  }
-                />
-              ))}
+            <div style={galleryStyles}>
+              <ImageGallery
+                items={images}
+                {...galleryOptions}
+                onClick={(e) => {
+                  const originalImageUrl = e.target.getAttribute("src");
+                  handleImageClick(originalImageUrl);
+                }}
+              />
             </div>
             <p>
               <span className="bold">Descrição:</span>
@@ -81,7 +95,29 @@ function ProductDetails() {
               <span className="bold">Preço:</span>
               R${accessory.price}
             </p>
-            <button onClick={handleClick}>Tenho interesse!</button>
+            <button
+              style={{
+                textDecoration: "none",
+                backgroundColor: "#25b456",
+                color: "#fff",
+                fontWeight: "bold",
+                cursor: "pointer",
+                transition: "0.3s",
+                padding: "7px 15px",
+                borderRadius: "5px",
+                border: "none",
+                fontSize: "1.1em",
+                marginLeft: "1em",
+                maxWidth: "200px",
+                minHeight: "2.5em",
+                ":hover": {
+                  backgroundColor: "#1c8a42",
+                },
+              }}
+              onClick={handleClick}
+            >
+              Tenho interesse!
+            </button>
             {showPopup && (
               <div
                 className={`${styles.image_popup} ${

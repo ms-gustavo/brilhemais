@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-.product_details_container button {
+/* .product_details_container button {
   text-decoration: none;
   background-color: #25b456;
   color: #fff;
@@ -43,7 +43,7 @@
 }
 .product_details_container button:hover {
   background-color: #1c8a42;
-}
+} */
 
 .image_popup {
   position: fixed;
