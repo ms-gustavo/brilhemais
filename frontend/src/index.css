@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  color: #756f4b;
+  margin-bottom: 1em;
+  font-size: 2.1em;
+}
+
+.bold {
+  font-weight: bold;
+  color: #16479d;
+}
+
+.site-title {
+  font-size: 1.7em;
+  color: #fce89a;
+  font-family: "Great Vibes", cursive;
+}
+
+.footer-text {
+  color: #f6e99e;
+  font-family: "Great Vibes", cursive;
+}

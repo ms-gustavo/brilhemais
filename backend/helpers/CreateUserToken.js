@@ -9,8 +9,9 @@ const createUserToken = async (user, req, res) => {
   //create token
   const token = jwt.sign(
     {
-      name: user.name,
-      id: user._id,
+      userName: user.name,
+      userId: user._id,
+      isAdmin: user.isAdmin,
     },
     tokenSecret
   );
@@ -18,7 +19,6 @@ const createUserToken = async (user, req, res) => {
   res.status(200).json({
     message: i18n.__("AUTHENTICATION_SUCCESSFULLY"),
     token: token,
-    userId: user._id,
   });
 };
 

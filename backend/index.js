@@ -19,6 +19,9 @@ app.use("/user", UserRoutes);
 const CategoriesRoutes = require("./routes/CategoriesRoutes");
 app.use("/categories", CategoriesRoutes);
 
+const CarrousselRoutes = require("./routes/CarrousselRoutes");
+app.use("/carroussel", CarrousselRoutes);
+
 const AccessoryRoutes = require("./routes/AccessoryRoutes");
 app.use("/accessory", AccessoryRoutes);
 //Ports

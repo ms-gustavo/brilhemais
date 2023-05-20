@@ -1,0 +1,20 @@
+button {
+  margin-top: 1em;
+  border: none;
+}
+
+.button_category a {
+  text-decoration: none;
+  background-color: #fce89a;
+  border: 1px solid #212529;
+  color: #212529;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 15px;
+  border-radius: 5px;
+}
+.button_category a:hover {
+  background-color: #212529;
+  color: #fce89a;
+}

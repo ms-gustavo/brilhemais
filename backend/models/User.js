@@ -22,7 +22,6 @@ const User = mongoose.model(
     },
     isAdmin: {
       type: Boolean,
-      default: false,
     },
   })
 );

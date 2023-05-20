@@ -17,7 +17,6 @@ module.exports = class AccessoryController {
     //check if user is admin
     const token = getToken(req);
     const user = await getUserByToken(token);
-
     if (!user.isAdmin) {
       res.status(422).json({
         message: i18n.__("UNABLE_TO_PROCESS"),
@@ -115,14 +114,17 @@ module.exports = class AccessoryController {
         return;
       }
 
-      // find accessories by categories
-      const accessories = await Accessory.find({ category: categoryId });
+      // find accessories by category
+      const accessories = await Accessory.find({
+        category: categoryId,
+      }).populate("category", "name");
       if (!accessories || accessories.length === 0) {
         return res
           .status(400)
           .json({ message: i18n.__("DONT_HAVE_ACCESSORIES") });
       }
-      return res.json({ accessories });
+
+      return res.json({ category: category.name, accessories });
     } catch (err) {
       console.log(err);
       return res
@@ -239,7 +241,7 @@ module.exports = class AccessoryController {
     if (images.length > 0) {
       updatedData.images = [];
       images.map((image) => {
-        updatedData.images.push(image.filename);
+        updatedData.images.push(image);
       });
     }
     await Accessory.findByIdAndUpdate(id, updatedData);
