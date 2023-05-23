@@ -5,6 +5,12 @@
   flex-wrap: wrap;
 }
 
+.card_others_care {
+  width: 25rem;
+  background-color: #756f4b;
+  color: #f6e99e;
+}
+
 .card_others {
   background-color: #756f4b;
   color: #f6e99e;

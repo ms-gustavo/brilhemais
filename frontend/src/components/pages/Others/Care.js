@@ -5,7 +5,7 @@ import styles from "./Others.module.css";
 const Care = () => {
   return (
     <section className={styles.others_section}>
-      <div className={`${styles.card_others} card`}>
+      <div className={`${styles.card_others_care} card`}>
         <div className="card-body">
           <h4 className={`${styles.card_text} card-title`}>Cuidados</h4>
           <p className="card-text">
