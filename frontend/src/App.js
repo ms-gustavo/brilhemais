@@ -19,6 +19,8 @@ import ManageCarroussel from "./components/pages/Products/ManageCarroussel";
 import CreateCarroussel from "./components/pages/Products/CreateCarroussel";
 import CreateCategory from "./components/pages/Products/CreateCategory";
 import ManageCategory from "./components/pages/Products/ManageCategory";
+import Care from "./components/pages/Others/Care";
+import Delivery from "./components/pages/Others/Delivery";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/cares" element={<Care />} />
+            <Route path="/deliveries" element={<Delivery />} />
             <Route path="/accessory/edit/:id" element={<EditProduct />} />
             <Route path="/category/:categoryId" element={<CategoryPage />} />
             <Route path="/accessory/:id" element={<ProductDetails />} />

@@ -135,8 +135,24 @@ const NavigationBar = () => {
             <>
               <Nav.Link
                 as={Link}
+                to="/cares"
+                className="mx-3"
+                style={{ color: "#F6E99E" }}
+              >
+                Cuidados
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/deliveries"
+                className="mx-3"
+                style={{ color: "#F6E99E" }}
+              >
+                Entregas
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
                 to="/login"
-                className="  mx-3"
+                className="mx-3"
                 style={{ color: "#F6E99E" }}
               >
                 Entrar
