@@ -5,7 +5,7 @@ const Delivery = () => {
   return (
     <section className={styles.others_section}>
       <div className="row">
-        <div className="col-sm-6">
+        <div className="col-sm-6 mb-2">
           <div className={`${styles.card_others} card`}>
             <div className="card-body">
               <h4 className={`${styles.card_text} card-title`}>Uber Flash</h4>

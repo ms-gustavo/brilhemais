@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .card_others {
-  width: 25rem;
   background-color: #756f4b;
   color: #f6e99e;
 }
