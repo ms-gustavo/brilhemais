@@ -1,3 +1,7 @@
+form {
+  color: #756f4b;
+}
+
 .form_control {
   display: flex;
   flex-direction: column;

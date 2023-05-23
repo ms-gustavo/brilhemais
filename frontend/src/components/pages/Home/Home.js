@@ -42,9 +42,9 @@ function Home() {
   };
 
   const galleryStyles = {
-    margin: "auto",
-    width: "80vw",
-    height: "auto",
+    // margin: "auto",
+    // width: "100vw",
+    // height: "auto",
   };
 
   return (

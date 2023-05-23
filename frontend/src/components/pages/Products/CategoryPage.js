@@ -82,17 +82,11 @@ const CategoryPage = () => {
                 </ul>
                 <div className="card-body">
                   <Link
-                    to={`../accessory/${accessory._id}`}
+                    to={`/accessory/${accessory._id}`}
                     className="card-link"
                   >
                     Detalhes
                   </Link>
-                  {/* <Link
-                    className="card-link"
-                    to={`/category/${product.category._id}`}
-                  >
-                    Ver categoria
-                  </Link> */}
                 </div>
               </div>
             );
