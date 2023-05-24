@@ -10,8 +10,7 @@ const Delivery = () => {
             <div className="card-body">
               <h4 className={`${styles.card_text} card-title`}>Uber Flash</h4>
               <p className="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
+                Cliente é responsável pelo custeio do Uber Flash.
               </p>
             </div>
           </div>
@@ -21,8 +20,7 @@ const Delivery = () => {
             <div className="card-body">
               <h4 className={`${styles.card_text} card-title`}>Presencial</h4>
               <p className="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
+                Opção gratuita, com local e dias agendados.
               </p>
             </div>
           </div>
