@@ -28,8 +28,8 @@ const NavigationBar = () => {
 
   return (
     <Navbar
-      style={{ backgroundColor: "#756F4B" }}
-      expand={decodedToken?.isAdmin ? "lg" : "md"}
+      style={{ backgroundColor: "#f5f5dc" }}
+      expand="lg"
       className="d-flex"
     >
       <Navbar.Brand as={Link} to="/">
@@ -47,18 +47,18 @@ const NavigationBar = () => {
       <Navbar.Toggle
         aria-controls="basic-navbar-nav"
         className="my-1"
-        style={{ backgroundColor: "#F6E99E", marginRight: "3px" }}
+        style={{ backgroundColor: "#ffffff", marginRight: "3px" }}
       />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <NavDropdown
-            title={<span style={{ color: "#F6E99E" }}>Produtos</span>}
+            title={<span style={{ color: "#D2B48C" }}>Produtos</span>}
             id="basic-nav-dropdown"
             className="dropdown-menu-right mx-3"
             style={{
-              "--bs-nav-link-color": "#F6E99E",
-              "--bs-nav-link-hover-color": "#F6E99E",
-              "--bs-navbar-active-color": "#F6E99E",
+              "--bs-nav-link-color": "#D2B48C",
+              "--bs-nav-link-hover-color": "#D2B48C",
+              "--bs-navbar-active-color": "#D2B48C",
             }}
           >
             {categories.map((category) => (
@@ -75,69 +75,66 @@ const NavigationBar = () => {
               Ver todos os produtos
             </NavDropdown.Item>
           </NavDropdown>
-
+          {!decodedToken?.isAdmin && (
+            <NavDropdown
+              title={<span style={{ color: "#D2B48C" }}>Orientações</span>}
+              id="basic-nav-dropdown"
+              className="dropdown-menu-right mx-3"
+              style={{
+                "--bs-nav-link-color": "#D2B48C",
+                "--bs-nav-link-hover-color": "#D2B48C",
+                "--bs-navbar-active-color": "#D2B48C",
+              }}
+            >
+              <NavDropdown.Item as={Link} to="/cares">
+                Cuidados
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/deliveries">
+                Entregas
+              </NavDropdown.Item>
+            </NavDropdown>
+          )}
           {decodedToken?.isAdmin && (
-            <>
-              <NavDropdown
-                title={<span>Gerenciar Produtos</span>}
-                id="basic-nav-dropdown"
-                className="dropdown-menu-right mx-3"
-                style={{
-                  "--bs-nav-link-color": "#F6E99E",
-                  "--bs-nav-link-hover-color": "#F6E99E",
-                  "--bs-navbar-active-color": "#F6E99E",
-                }}
-              >
-                <NavDropdown.Item as={Link} to="/accessory/create">
-                  Cadastrar Produtos
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/accessory/all">
-                  Gerenciar Produtos
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown
-                title={<span>Gerenciar Categorias</span>}
-                id="basic-nav-dropdown"
-                className="dropdown-menu-right mx-3"
-                style={{
-                  "--bs-nav-link-color": "#F6E99E",
-                  "--bs-nav-link-hover-color": "#F6E99E",
-                  "--bs-navbar-active-color": "#F6E99E",
-                }}
-              >
-                <NavDropdown.Item as={Link} to="/category/create">
-                  Cadastrar Categorias
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/category/manage">
-                  Gerenciar Categorias
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown
-                title={<span>Gerenciar Carrossel</span>}
-                id="basic-nav-dropdown"
-                className="dropdown-menu-right mx-3"
-                style={{
-                  "--bs-nav-link-color": "#F6E99E",
-                  "--bs-nav-link-hover-color": "#F6E99E",
-                  "--bs-navbar-active-color": "#F6E99E",
-                }}
-              >
-                <NavDropdown.Item as={Link} to="/carroussel/create">
-                  Cadastrar Carrossel
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/carroussel/all">
-                  Gerenciar Carrossel
-                </NavDropdown.Item>
-              </NavDropdown>
-            </>
+            <NavDropdown
+              title={<span style={{ color: "#D2B48C" }}>Gerenciar</span>}
+              id="basic-nav-dropdown"
+              className="dropdown-menu-right mx-3"
+              style={{
+                "--bs-nav-link-color": "#D2B48C",
+                "--bs-nav-link-hover-color": "#D2B48C",
+                "--bs-navbar-active-color": "#D2B48C",
+              }}
+            >
+              <NavDropdown.Item as={Link} to="/accessory/create">
+                Cadastrar Produtos
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/accessory/all">
+                Gerenciar Produtos
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/category/create">
+                Cadastrar Categorias
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/category/manage">
+                Gerenciar Categorias
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/carroussel/create">
+                Cadastrar Carrossel
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/carroussel/all">
+                Gerenciar Carrossel
+              </NavDropdown.Item>
+            </NavDropdown>
           )}
           {!authenticated ? (
             <>
               <Nav.Link
                 as={Link}
                 to="/login"
-                className="  mx-3"
-                style={{ color: "#F6E99E" }}
+                className="mx-3"
+                style={{ color: "#D2B48C" }}
               >
                 Entrar
               </Nav.Link>
@@ -145,7 +142,7 @@ const NavigationBar = () => {
                 as={Link}
                 to="/register"
                 className=" mx-3"
-                style={{ color: "#F6E99E" }}
+                style={{ color: "#D2B48C" }}
               >
                 Registrar
               </Nav.Link>
@@ -154,7 +151,7 @@ const NavigationBar = () => {
             <Nav.Link
               onClick={handleLogout}
               className=" mx-3"
-              style={{ color: "#F6E99E" }}
+              style={{ color: "#D2B48C" }}
             >
               Sair
             </Nav.Link>

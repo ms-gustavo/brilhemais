@@ -94,7 +94,9 @@ function AccessoryForm({ handleSubmit, accessoryData, btnText }) {
         {accessoryData === undefined && (
           <div className={styles.form_control}>
             <select onChange={handleCategory} value={accessory.category || ""}>
-              <option value="Categorias">Selecione uma categoria</option>
+              <option value="" defaultValue disabled>
+                Selecione uma categoria
+              </option>
               {categories.map((category) => (
                 <option key={category._id} value={category.name}>
                   {category.name}

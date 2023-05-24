@@ -7,7 +7,7 @@
 
 h1 {
   font-family: "Montserrat", sans-serif;
-  color: #756f4b;
+  color: #ffd700;
   margin-bottom: 1em;
   font-size: 2.1em;
 }
@@ -19,11 +19,11 @@ h1 {
 
 .site-title {
   font-size: 1.7em;
-  color: #fce89a;
+  color: #ffd700;
   font-family: "Great Vibes", cursive;
 }
 
 .footer-text {
-  color: #f6e99e;
+  color: #d2b48c;
   font-family: "Great Vibes", cursive;
 }

@@ -25,7 +25,7 @@ function AllProducts() {
               style={{
                 width: "18rem",
                 margin: "10px",
-                "--bs-card-bg": "#756F4B",
+                "--bs-card-bg": "#f5f5dc",
               }}
               key={index}
             >
@@ -45,7 +45,7 @@ function AllProducts() {
               <ul className="list-group list-group-flush">
                 <li
                   style={{
-                    "--bs-list-group-bg": "#756F4B",
+                    "--bs-list-group-bg": "#f5f5dc",
                   }}
                   className="list-group-item"
                 >
@@ -53,7 +53,7 @@ function AllProducts() {
                 </li>
                 <li
                   style={{
-                    "--bs-list-group-bg": "#756F4B",
+                    "--bs-list-group-bg": "#f5f5dc",
                   }}
                   className="list-group-item"
                 >
@@ -68,7 +68,7 @@ function AllProducts() {
                   className="card-link"
                   to={`/category/${product.category._id}`}
                 >
-                  Ver categoria
+                  Categoria
                 </Link>
               </div>
             </div>
