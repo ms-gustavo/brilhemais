@@ -75,7 +75,24 @@ const NavigationBar = () => {
               Ver todos os produtos
             </NavDropdown.Item>
           </NavDropdown>
-
+          <NavDropdown
+            title={<span style={{ color: "#D2B48C" }}>Orientações</span>}
+            id="basic-nav-dropdown"
+            className="dropdown-menu-right mx-3"
+            style={{
+              "--bs-nav-link-color": "#D2B48C",
+              "--bs-nav-link-hover-color": "#D2B48C",
+              "--bs-navbar-active-color": "#D2B48C",
+            }}
+          >
+            <NavDropdown.Item as={Link} to="/cares">
+              Cuidados
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item as={Link} to="/deliveries">
+              Entregas
+            </NavDropdown.Item>
+          </NavDropdown>
           {decodedToken?.isAdmin && (
             <>
               <NavDropdown
@@ -142,24 +159,6 @@ const NavigationBar = () => {
           )}
           {!authenticated ? (
             <>
-              <NavDropdown
-                title={<span style={{ color: "#D2B48C" }}>Orientações</span>}
-                id="basic-nav-dropdown"
-                className="dropdown-menu-right mx-3"
-                style={{
-                  "--bs-nav-link-color": "#D2B48C",
-                  "--bs-nav-link-hover-color": "#D2B48C",
-                  "--bs-navbar-active-color": "#D2B48C",
-                }}
-              >
-                <NavDropdown.Item as={Link} to="/cares">
-                  Cuidados
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/deliveries">
-                  Entregas
-                </NavDropdown.Item>
-              </NavDropdown>
               <Nav.Link
                 as={Link}
                 to="/login"
