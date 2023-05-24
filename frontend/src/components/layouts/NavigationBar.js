@@ -93,6 +93,7 @@ const NavigationBar = () => {
                 <NavDropdown.Item as={Link} to="/accessory/create">
                   Cadastrar Produtos
                 </NavDropdown.Item>
+                <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to="/accessory/all">
                   Gerenciar Produtos
                 </NavDropdown.Item>
@@ -112,6 +113,7 @@ const NavigationBar = () => {
                 <NavDropdown.Item as={Link} to="/category/create">
                   Cadastrar Categorias
                 </NavDropdown.Item>
+                <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to="/category/manage">
                   Gerenciar Categorias
                 </NavDropdown.Item>
@@ -131,6 +133,7 @@ const NavigationBar = () => {
                 <NavDropdown.Item as={Link} to="/carroussel/create">
                   Cadastrar Carrossel
                 </NavDropdown.Item>
+                <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to="/carroussel/all">
                   Gerenciar Carrossel
                 </NavDropdown.Item>
@@ -139,22 +142,24 @@ const NavigationBar = () => {
           )}
           {!authenticated ? (
             <>
-              <Nav.Link
-                as={Link}
-                to="/cares"
-                className="mx-3"
-                style={{ color: "#D2B48C" }}
+              <NavDropdown
+                title={<span style={{ color: "#D2B48C" }}>Orientações</span>}
+                id="basic-nav-dropdown"
+                className="dropdown-menu-right mx-3"
+                style={{
+                  "--bs-nav-link-color": "#D2B48C",
+                  "--bs-nav-link-hover-color": "#D2B48C",
+                  "--bs-navbar-active-color": "#D2B48C",
+                }}
               >
-                Cuidados
-              </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to="/deliveries"
-                className="mx-3"
-                style={{ color: "#D2B48C" }}
-              >
-                Entregas
-              </Nav.Link>
+                <NavDropdown.Item as={Link} to="/cares">
+                  Cuidados
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item as={Link} to="/deliveries">
+                  Entregas
+                </NavDropdown.Item>
+              </NavDropdown>
               <Nav.Link
                 as={Link}
                 to="/login"
