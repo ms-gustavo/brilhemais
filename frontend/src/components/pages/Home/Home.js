@@ -2,6 +2,7 @@ import api from "../../../utils/api";
 import { useState, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import LogoHome from "../../../assets/img/logo2.png";
 
 function Home() {
   const [carroussel, setCarroussel] = useState([]);
@@ -41,16 +42,29 @@ function Home() {
     startIndex: currentIndex,
   };
 
-  const galleryStyles = {
-    // margin: "auto",
-    // width: "100vw",
-    // height: "auto",
-  };
-
   return (
-    <div style={galleryStyles}>
-      {carroussel.length > 0 && (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F5F5DC",
+      }}
+    >
+      {carroussel.length ? (
         <ImageGallery items={images} {...galleryOptions} />
+      ) : (
+        <img
+          src={LogoHome}
+          alt={LogoHome}
+          className="img-fluid"
+          style={{
+            padding: "1em",
+            margin: "10px",
+            width: "100%",
+            backgroundColor: "#F5F5DC",
+          }}
+        />
       )}
     </div>
   );

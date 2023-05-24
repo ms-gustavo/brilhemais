@@ -45,7 +45,7 @@ function App() {
             <Route path="/carroussel/all" element={<ManageCarroussel />} />
             <Route path="/carroussel/create" element={<CreateCarroussel />} />
             <Route path="/allproducts" element={<AllProducts />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" exact element={<Home />} />
           </Routes>
         </Container>
         <Footer />

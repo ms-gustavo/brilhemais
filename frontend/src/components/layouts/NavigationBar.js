@@ -75,87 +75,58 @@ const NavigationBar = () => {
               Ver todos os produtos
             </NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown
-            title={<span style={{ color: "#D2B48C" }}>Orientações</span>}
-            id="basic-nav-dropdown"
-            className="dropdown-menu-right mx-3"
-            style={{
-              "--bs-nav-link-color": "#D2B48C",
-              "--bs-nav-link-hover-color": "#D2B48C",
-              "--bs-navbar-active-color": "#D2B48C",
-            }}
-          >
-            <NavDropdown.Item as={Link} to="/cares">
-              Cuidados
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="/deliveries">
-              Entregas
-            </NavDropdown.Item>
-          </NavDropdown>
+          {!decodedToken?.isAdmin && (
+            <NavDropdown
+              title={<span style={{ color: "#D2B48C" }}>Orientações</span>}
+              id="basic-nav-dropdown"
+              className="dropdown-menu-right mx-3"
+              style={{
+                "--bs-nav-link-color": "#D2B48C",
+                "--bs-nav-link-hover-color": "#D2B48C",
+                "--bs-navbar-active-color": "#D2B48C",
+              }}
+            >
+              <NavDropdown.Item as={Link} to="/cares">
+                Cuidados
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/deliveries">
+                Entregas
+              </NavDropdown.Item>
+            </NavDropdown>
+          )}
           {decodedToken?.isAdmin && (
-            <>
-              <NavDropdown
-                title={
-                  <span style={{ color: "#D2B48C" }}>Gerenciar Produtos</span>
-                }
-                id="basic-nav-dropdown"
-                className="dropdown-menu-right mx-3"
-                style={{
-                  "--bs-nav-link-color": "#D2B48C",
-                  "--bs-nav-link-hover-color": "#D2B48C",
-                  "--bs-navbar-active-color": "#D2B48C",
-                }}
-              >
-                <NavDropdown.Item as={Link} to="/accessory/create">
-                  Cadastrar Produtos
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/accessory/all">
-                  Gerenciar Produtos
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown
-                title={
-                  <span style={{ color: "#D2B48C" }}>Gerenciar Categorias</span>
-                }
-                id="basic-nav-dropdown"
-                className="dropdown-menu-right mx-3"
-                style={{
-                  "--bs-nav-link-color": "#D2B48C",
-                  "--bs-nav-link-hover-color": "#D2B48C",
-                  "--bs-navbar-active-color": "#D2B48C",
-                }}
-              >
-                <NavDropdown.Item as={Link} to="/category/create">
-                  Cadastrar Categorias
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/category/manage">
-                  Gerenciar Categorias
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown
-                title={
-                  <span style={{ color: "#D2B48C" }}>Gerenciar Carrossel</span>
-                }
-                id="basic-nav-dropdown"
-                className="dropdown-menu-right mx-3"
-                style={{
-                  "--bs-nav-link-color": "#D2B48C",
-                  "--bs-nav-link-hover-color": "#D2B48C",
-                  "--bs-navbar-active-color": "#D2B48C",
-                }}
-              >
-                <NavDropdown.Item as={Link} to="/carroussel/create">
-                  Cadastrar Carrossel
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/carroussel/all">
-                  Gerenciar Carrossel
-                </NavDropdown.Item>
-              </NavDropdown>
-            </>
+            <NavDropdown
+              title={<span style={{ color: "#D2B48C" }}>Gerenciar</span>}
+              id="basic-nav-dropdown"
+              className="dropdown-menu-right mx-3"
+              style={{
+                "--bs-nav-link-color": "#D2B48C",
+                "--bs-nav-link-hover-color": "#D2B48C",
+                "--bs-navbar-active-color": "#D2B48C",
+              }}
+            >
+              <NavDropdown.Item as={Link} to="/accessory/create">
+                Cadastrar Produtos
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/accessory/all">
+                Gerenciar Produtos
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/category/create">
+                Cadastrar Categorias
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/category/manage">
+                Gerenciar Categorias
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/carroussel/create">
+                Cadastrar Carrossel
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/carroussel/all">
+                Gerenciar Carrossel
+              </NavDropdown.Item>
+            </NavDropdown>
           )}
           {!authenticated ? (
             <>
