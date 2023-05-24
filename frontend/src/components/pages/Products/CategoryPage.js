@@ -45,7 +45,7 @@ const CategoryPage = () => {
                 style={{
                   width: "18rem",
                   margin: "10px",
-                  "--bs-card-bg": "#756F4B",
+                  "--bs-card-bg": "#f5f5dc",
                 }}
                 key={index}
               >
@@ -65,7 +65,7 @@ const CategoryPage = () => {
                 <ul className="list-group list-group-flush">
                   <li
                     style={{
-                      "--bs-list-group-bg": "#756F4B",
+                      "--bs-list-group-bg": "#f5f5dc",
                     }}
                     className="list-group-item"
                   >
@@ -73,7 +73,7 @@ const CategoryPage = () => {
                   </li>
                   <li
                     style={{
-                      "--bs-list-group-bg": "#756F4B",
+                      "--bs-list-group-bg": "#f5f5dc",
                     }}
                     className="list-group-item"
                   >

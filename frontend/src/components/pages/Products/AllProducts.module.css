@@ -11,7 +11,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  color: black;
 }
 
 .product_card {
@@ -24,7 +23,7 @@
   padding: 20px;
 }
 span {
-  color: #f6e99e;
+  color: #d2b48c;
 }
 .product_card_image {
   height: 225px;
@@ -47,18 +46,17 @@ span {
 
 .product_card a {
   text-decoration: none;
-  background-color: #fce89a;
-  color: #212529;
+  background-color: #d19964;
+  color: #ffd700;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
-  padding: 5px;
+  padding: 8px;
   border-radius: 5px;
 }
 
 .product_card a:hover {
   background-color: #212529;
-  color: #fce89a;
 }
 
 .card-img-top img {
