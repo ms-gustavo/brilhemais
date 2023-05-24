@@ -21,6 +21,7 @@ import CreateCategory from "./components/pages/Products/CreateCategory";
 import ManageCategory from "./components/pages/Products/ManageCategory";
 import Care from "./components/pages/Others/Care";
 import Delivery from "./components/pages/Others/Delivery";
+import ButtonToTop from "./components/ButtonToTop/ButtonToTop";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
         </Container>
         <Footer />
       </UserProvider>
+      <ButtonToTop />
     </Router>
   );
 }

@@ -1,0 +1,22 @@
+.btn_topo {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.btn_topo.visible {
+  display: block !important;
+}
+
+.btn_topo > svg {
+  vertical-align: middle;
+}
