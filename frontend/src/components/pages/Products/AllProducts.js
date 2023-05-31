@@ -25,7 +25,8 @@ function AllProducts() {
               style={{
                 width: "18rem",
                 margin: "10px",
-                "--bs-card-bg": "#f5f5dc",
+                "--bs-card-bg": "#1c1c1c",
+                "--bs-border-color-translucent": "#ffd700",
               }}
               key={index}
             >
@@ -45,7 +46,8 @@ function AllProducts() {
               <ul className="list-group list-group-flush">
                 <li
                   style={{
-                    "--bs-list-group-bg": "#f5f5dc",
+                    "--bs-list-group-bg": "#1c1c1c",
+                    "border-color": "#ffd700",
                   }}
                   className="list-group-item"
                 >
@@ -53,7 +55,7 @@ function AllProducts() {
                 </li>
                 <li
                   style={{
-                    "--bs-list-group-bg": "#f5f5dc",
+                    "--bs-list-group-bg": "#1c1c1c",
                   }}
                   className="list-group-item"
                 >

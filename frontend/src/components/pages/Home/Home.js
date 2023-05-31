@@ -7,6 +7,7 @@ import LogoHome from "../../../assets/img/logo2.png";
 function Home() {
   const [carroussel, setCarroussel] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     api
@@ -48,26 +49,45 @@ function Home() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#F5F5DC",
+        position: "relative",
+        backgroundColor: "#1c1c1c",
+        height: carroussel.length ? "auto" : "82vh",
+        width: carroussel.length ? "auto" : "100%",
       }}
     >
-      {carroussel.length ? (
-        <ImageGallery items={images} {...galleryOptions} />
-      ) : (
-        <img
-          src={LogoHome}
-          alt={LogoHome}
-          className="img-fluid"
+      {!carroussel.length ? (
+        <div
           style={{
-            padding: "1em",
-            margin: "10px",
-            width: "100%",
-            backgroundColor: "#F5F5DC",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${LogoHome})`,
+            backgroundPosition: "center",
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "no-repeat",
+            filter: "blur(2px)",
           }}
         />
+      ) : (
+        <ImageGallery items={images} {...galleryOptions} />
+      )}
+
+      {!carroussel.length && (
+        <p
+          className={`bg-text ${isHovered ? "glow-effect" : ""}`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          Realçando o brilho que há em você
+        </p>
       )}
     </div>
   );
 }
-
 export default Home;

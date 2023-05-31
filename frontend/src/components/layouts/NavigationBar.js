@@ -28,7 +28,7 @@ const NavigationBar = () => {
 
   return (
     <Navbar
-      style={{ backgroundColor: "#f5f5dc" }}
+      style={{ backgroundColor: "#1c1c1c" }}
       expand="lg"
       className="d-flex"
     >

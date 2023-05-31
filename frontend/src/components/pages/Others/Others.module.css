@@ -3,17 +3,20 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  background-color: #1c1c1c;
 }
 
 .card_others_care {
   width: 25rem;
-  background-color: #f5f5dc;
+  background-color: #1c1c1c;
   color: #d2b48c;
+  border: 1px solid #ffd700;
 }
 
 .card_others {
-  background-color: #f5f5dc;
+  background-color: #1c1c1c;
   color: #d2b48c;
+  border: 1px solid #ffd700;
 }
 
 .card_text {
@@ -35,7 +38,7 @@ button {
 .button_category a {
   text-decoration: none;
   background-color: #d19964;
-  color: #ffd700;
+  color: #1c1c1c;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
@@ -43,5 +46,5 @@ button {
   border-radius: 5px;
 }
 .button_category a:hover {
-  background-color: #212529;
+  color: #ffd700;
 }

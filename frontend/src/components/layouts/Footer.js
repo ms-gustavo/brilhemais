@@ -4,7 +4,7 @@ import { IoLogoInstagram } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <footer className="text-light" style={{ backgroundColor: "#f5f5dc" }}>
+    <footer className="text-light" style={{ backgroundColor: "#1c1c1c" }}>
       <div className="container py-4">
         <div className="row">
           <div className="col-md-6">
@@ -28,9 +28,9 @@ const Footer = () => {
               className=" btn btn-warning"
               style={{
                 fontWeight: "bold",
-                color: "#ffd700",
+                color: "#1c1c1c",
                 backgroundColor: "#d19964",
-                border: "1px solid #d19964",
+                border: "1px solid #1c1c1c",
               }}
             >
               <IoLogoInstagram className="me-2" />
