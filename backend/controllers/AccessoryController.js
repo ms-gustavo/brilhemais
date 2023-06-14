@@ -17,7 +17,6 @@ module.exports = class AccessoryController {
     //check if user is admin
     const token = getToken(req);
     const user = await getUserByToken(token);
-
     if (!user.isAdmin) {
       res.status(422).json({
         message: i18n.__("UNABLE_TO_PROCESS"),
@@ -96,6 +95,44 @@ module.exports = class AccessoryController {
     }
   }
 
+  static async getAccessoryByCategory(req, res) {
+    try {
+      const categoryId = req.params.id;
+      if (!ObjectId.isValid(categoryId)) {
+        res.status(422).json({
+          message: i18n.__("INVALID_ID"),
+        });
+        return;
+      }
+
+      // check if category exists
+      const category = await Category.findOne({ _id: categoryId });
+      if (!category) {
+        res.status(404).json({
+          message: i18n.__("CATEGORY_NOT_FOUND"),
+        });
+        return;
+      }
+
+      // find accessories by category
+      const accessories = await Accessory.find({
+        category: categoryId,
+      }).populate("category", "name");
+      if (!accessories || accessories.length === 0) {
+        return res
+          .status(400)
+          .json({ message: i18n.__("DONT_HAVE_ACCESSORIES") });
+      }
+
+      return res.json({ category: category.name, accessories });
+    } catch (err) {
+      console.log(err);
+      return res
+        .status(500)
+        .json({ message: i18n.__("ERROR_ACCESSORIES_BY_CATEGORY") });
+    }
+  }
+
   static async getAccessoryById(req, res) {
     const id = req.params.id;
     // check if ID is valid
@@ -106,7 +143,7 @@ module.exports = class AccessoryController {
       return;
     }
 
-    // check if category exists
+    // check if accessory exists
     const accessory = await Accessory.findOne({ _id: id });
     if (!accessory) {
       res.status(404).json({
@@ -157,7 +194,7 @@ module.exports = class AccessoryController {
 
   static async updateAccessory(req, res) {
     const id = req.params.id;
-    const { name, category, price, description } = req.body;
+    const { name, price, description } = req.body;
     const images = req.files;
 
     let updatedData = {};
@@ -204,7 +241,7 @@ module.exports = class AccessoryController {
     if (images.length > 0) {
       updatedData.images = [];
       images.map((image) => {
-        updatedData.images.push(image.filename);
+        updatedData.images.push(image);
       });
     }
     await Accessory.findByIdAndUpdate(id, updatedData);

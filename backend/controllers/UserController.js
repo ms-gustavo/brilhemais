@@ -14,12 +14,13 @@ const {
 
 module.exports = class UserController {
   static async register(req, res) {
-    const { name, email, password, confirmpassword } = req.body;
+    const { name, email, phone, password, confirmpassword } = req.body;
 
     // validations
     const validationError = validateRegisterUser(
       name,
       email,
+      phone,
       password,
       confirmpassword
     );
@@ -46,6 +47,7 @@ module.exports = class UserController {
     const user = new User({
       name,
       email,
+      phone,
       password: passwordHash,
     });
 
@@ -73,7 +75,7 @@ module.exports = class UserController {
 
     if (!user) {
       res.status(422).json({
-        message: `O usuário não existe`,
+        message: i18n.__("USER_NOT_EXISTS"),
       });
       return;
     }
@@ -81,7 +83,7 @@ module.exports = class UserController {
     const checkPassword = await bcrypt.compare(password, user.password);
 
     if (!checkPassword) {
-      res.status(422).json({ message: `A senha está inválida!` });
+      res.status(422).json({ message: i18n.__("INVALID_PASSWORD") });
       return;
     }
 
@@ -93,8 +95,7 @@ module.exports = class UserController {
     if (req.headers.authorization) {
       const token = getToken(req);
       const decoded = jwt.verify(token, tokenSecret);
-
-      currentUser = await User.findById(decoded.id);
+      currentUser = await User.findById(decoded.userId);
       currentUser.password = undefined;
     } else {
       currentUser = null;

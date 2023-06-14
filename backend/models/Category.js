@@ -10,10 +10,6 @@ const Category = mongoose.model(
         required: true,
         unique: true,
       },
-      image: {
-        type: String,
-        required: true,
-      },
       accessories: [
         {
           type: Schema.Types.ObjectId,

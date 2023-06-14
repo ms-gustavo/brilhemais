@@ -1,0 +1,47 @@
+.others_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card_others_care {
+  width: 25rem;
+  background-color: #f5f5dc;
+  color: #d2b48c;
+}
+
+.card_others {
+  background-color: #f5f5dc;
+  color: #d2b48c;
+}
+
+.card_text {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.button_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin-top: 1em;
+  border: none;
+}
+
+.button_category a {
+  text-decoration: none;
+  background-color: #d19964;
+  color: #ffd700;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 15px;
+  border-radius: 5px;
+}
+.button_category a:hover {
+  background-color: #212529;
+}

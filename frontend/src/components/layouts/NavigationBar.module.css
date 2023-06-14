@@ -1,0 +1,6 @@
+.custom_button a {
+  color: #ffffff;
+}
+.custom_button a:hover {
+  color: #ffdada;
+}
