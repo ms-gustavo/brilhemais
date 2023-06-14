@@ -1,0 +1,13 @@
+.button_category a {
+  text-decoration: none;
+  background-color: #d19964;
+  color: #ffd700;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 15px;
+  border-radius: 5px;
+}
+.button_category a:hover {
+  background-color: #212529;
+}

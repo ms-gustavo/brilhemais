@@ -1,8 +1,10 @@
 import api from "../../../utils/api";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import LogoHome from "../../../assets/img/logo2.png";
+import style from "./Home.module.css";
 
 function Home() {
   const [carroussel, setCarroussel] = useState([]);
@@ -43,30 +45,37 @@ function Home() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#F5F5DC",
-      }}
-    >
-      {carroussel.length ? (
-        <ImageGallery items={images} {...galleryOptions} />
-      ) : (
-        <img
-          src={LogoHome}
-          alt={LogoHome}
-          className="img-fluid"
-          style={{
-            padding: "1em",
-            margin: "10px",
-            width: "100%",
-            backgroundColor: "#F5F5DC",
-          }}
-        />
-      )}
-    </div>
+    <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#F5F5DC",
+        }}
+      >
+        {carroussel.length ? (
+          <ImageGallery items={images} {...galleryOptions} />
+        ) : (
+          <img
+            src={LogoHome}
+            alt={LogoHome}
+            className="img-fluid"
+            style={{
+              padding: "1em",
+              margin: "10px",
+              width: "100%",
+              backgroundColor: "#F5F5DC",
+            }}
+          />
+        )}
+      </div>
+      <div className="text-center ">
+        <button className={style.button_category}>
+          <Link to="/allproducts">Ver todos os acessórios</Link>
+        </button>
+      </div>
+    </>
   );
 }
 

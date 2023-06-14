@@ -1,4 +1,5 @@
 .container {
+  min-height: 59vh;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: #f5f5dc;
 }
